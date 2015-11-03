@@ -1,0 +1,6 @@
+spendingClassDiagram.dia:
+This is a good start.  I do not see any GUI elements (JPanels, JButtons, etc...)  Please add
+It is not necessary to list every category in a seperate class.
+
+Grade:
+Add the GUI elements and it should be good to go!  Then start coding!
