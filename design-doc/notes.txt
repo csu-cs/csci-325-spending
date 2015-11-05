@@ -4,3 +4,5 @@ It is not necessary to list every category in a seperate class.
 
 Grade:
 Add the GUI elements and it should be good to go!  Then start coding!
+
+Dr. West, so just make a master Category class and create subcategory objects? An as for user profile, should I try to work on a Linked list to enter each user name?
