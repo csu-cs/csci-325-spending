@@ -35,25 +35,43 @@ public class StartPanel extends JPanel{
 
 
         JPanel welcomePane = new JPanel();
-        welcomePane.setLayout(new BoxLayout(welcomePane, BoxLayout.PAGE_AXIS));
-        welcomePane.add(Box.createRigidArea(new Dimension(0, 50)));
-        welcomePane.add(welcome);
-        welcomePane.add(Box.createRigidArea(new Dimension(0,100)));
-        welcomePane.setVisible(true);
+        //welcomePane.setLayout(new BoxLayout(welcomePane, BoxLayout.PAGE_AXIS));
+        welcomePane.setLayout(new GridBagLayout());
+        GridBagConstraints c0 = new GridBagConstraints();
+        c0.fill = GridBagConstraints.VERTICAL;
+        //welcomePane.add(Box.createRigidArea(new Dimension(0, 50)));
+        c0.ipady = 75;
+        c0.weightx = 0.0;
+        c0.weighty = 1.0;
+        c0.gridwidth = 5;
+        c0.gridx = 0;
+        c0.gridy = 0;
+        welcomePane.add(welcome, c0);
+        //welcomePane.add(Box.createRigidArea(new Dimension(0, 100)));
+        //welcomePane.setVisible(true);
 
-        JPanel buttonsPane = new JPanel();
-        buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.LINE_AXIS));
-        buttonsPane.add(Box.createHorizontalGlue());
-        buttonsPane.add(setup);
-        buttonsPane.add(addExpense);
-        buttonsPane.add(tracking);
-        buttonsPane.add(userProfile);
-        buttonsPane.setVisible(true);
+        //JPanel buttonsPane = new JPanel();
+        //buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.LINE_AXIS));
+        //buttonsPane.add(Box.createHorizontalGlue());
+        c0.gridx = 1;
+        c0.gridy = 1;
+        welcomePane.add(setup, c0);
+        c0.gridx = 2;
+        c0.gridy = 1;
+        welcomePane.add(addExpense, c0);
+        c0.gridx = 3;
+        c0.gridy = 1;
+        welcomePane.add(tracking,c0);
+        c0.gridx = 4;
+        c0.gridy = 1;
+        welcomePane.add(userProfile, c0);
+        //buttonsPane.setVisible(true);
 
         //Container contentPane = new Container();
         //Container contentPane = getContentPane();
-        add(welcomePane, BorderLayout.CENTER);
-        add(buttonsPane, BorderLayout.SOUTH);
+        add(welcomePane);
+        //add(welcomePane, BorderLayout.CENTER);
+        //add(buttonsPane, BorderLayout.SOUTH);
 
     }
     private class ButtonListener implements ActionListener{
