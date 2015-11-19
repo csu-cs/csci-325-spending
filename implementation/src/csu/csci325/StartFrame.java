@@ -128,11 +128,14 @@ public class StartFrame extends JFrame {
             if (e.getSource() == setup) {
                 new SetupFrame();
                 dispose();
-            }/*
-            else if (e.getSource() == addExpense){
-                new addExpenseFrame().setVisible(true);
-                this.dispose();
             }
+            else if (e.getSource() == addExpense){
+                //if ()
+                new AddExpenseFrame();
+                dispose();
+                //new addExpenseFrame().setVisible(true);
+                //this.dispose();
+            }/*
             else if (e.getSource() == tracking){
                 new trackingFrame().setVisible(true);
                 this.dispose();

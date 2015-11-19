@@ -37,7 +37,7 @@ public class SetupFrame extends JFrame{
 
         setupFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setupFrame.setPreferredSize(new Dimension(400, 300));
+        //setupFrame.setPreferredSize(new Dimension(400, 300));
         SetupPanel setupPanel = new SetupPanel();
         setupFrame.getContentPane().add(setupPanel);
 
@@ -127,7 +127,7 @@ public class SetupFrame extends JFrame{
             buttonsPane.add(addExpense);
             buttonsPane.add(tracking);
             buttonsPane.add(userProfile);
-            buttonsPane.setVisible(true);
+            //buttonsPane.setVisible(true);
 
             JPanel setupPane = new JPanel();
             setupPane.setLayout(new GridBagLayout());
