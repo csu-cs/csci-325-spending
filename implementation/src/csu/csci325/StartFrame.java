@@ -135,11 +135,12 @@ public class StartFrame extends JFrame {
                 dispose();
                 //new addExpenseFrame().setVisible(true);
                 //this.dispose();
-            }/*
-            else if (e.getSource() == tracking){
-                new trackingFrame().setVisible(true);
-                this.dispose();
             }
+            else if (e.getSource() == tracking){
+                new TrackingFrame();
+                //new trackingFrame().setVisible(true);
+                //this.dispose();
+            }/*
             else if (e.getSource() == userProfile){
                 new userProfileFrame().setVisible(true);
                 this.dispose();

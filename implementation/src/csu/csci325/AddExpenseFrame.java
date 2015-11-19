@@ -11,6 +11,8 @@ public class AddExpenseFrame extends JFrame {
 
     private JLabel selectCategoryLabel;
     private JComboBox categoryBox;
+
+    //String passed in of active categories from setup frame
     public String[] categoryNames = {"Rent/Mortgage", "Food/Grocery",
         "Entertainment", "Loans", "Savings", "Credit Card", "Fuel", "Manual Category" };
 
@@ -25,7 +27,7 @@ public class AddExpenseFrame extends JFrame {
     private JButton userProfile;
 
     public AddExpenseFrame() {
-        JFrame addExpenseFrame = new JFrame("Setup Panel");
+        JFrame addExpenseFrame = new JFrame("Add Expense Panel");
 
         addExpenseFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
