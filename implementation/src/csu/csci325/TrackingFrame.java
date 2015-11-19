@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class TrackingFrame extends JFrame {
 
@@ -13,9 +14,14 @@ public class TrackingFrame extends JFrame {
     private JButton exVIncomeButton;
     private JButton listButton;
 
-    boolean pieClick;
-    boolean exVIncClick;
-    boolean listClick;
+    boolean pieClick = false;
+    boolean exVIncClick = false;
+    boolean listClick = false;
+
+    private JPanel pieChart = new JPanel();
+    private JPanel exVIncomeChart = new JPanel();
+    private JPanel listChart = new JPanel();
+    private JPanel blankChart = new JPanel();
 
     private JButton setup;
     private JButton addExpense;
@@ -50,6 +56,11 @@ public class TrackingFrame extends JFrame {
             tracking = new JButton("Tracking");
             userProfile = new JButton("User Profile");
 
+            pieChart = new JPanel();
+            exVIncomeChart = new JPanel();
+            listChart = new JPanel();
+            blankChart = new JPanel();
+
             ButtonListener listener = new ButtonListener();
             setup.addActionListener(listener);
             addExpense.addActionListener(listener);
@@ -68,11 +79,30 @@ public class TrackingFrame extends JFrame {
             viewTypePane.add(exVIncomeButton);
             viewTypePane.add(listButton);
 
-            JPanel pieChart = new JPanel();
-            pieChart.add(new PieChart2());
+            //PIE CHART
+            //PASS IN VALUES FROM CATEGORIES
+            //WILL LIKELY BE FOR LOOPS FOR EACH CATEGORY
+            ArrayList<Double> values = new ArrayList<Double>();
+            values.add(new Double(10));
+            values.add(new Double(20));
+            values.add(new Double(30));
+            values.add(new Double(15));
+            values.add(new Double(15));
 
-            JPanel exVIncomeChart = new JPanel();
-            JPanel listChart = new JPanel();
+            ArrayList<Color> colors = new ArrayList<Color>();
+            colors.add(Color.gray);
+            colors.add(Color.green);
+            colors.add(Color.blue);
+            colors.add(Color.pink);
+            colors.add(Color.yellow);
+
+            PieChartFinal pc = new PieChartFinal(values, colors);
+            pc.setSize(200,200);
+            pieChart.add(pc);
+
+            //JPanel exVIncomeChart = new JPanel();
+            //JPanel listChart = new JPanel();
+            //JPanel blankChart = new JPanel();
             JPanel buttonsPane = new JPanel();
 
             buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.LINE_AXIS));
@@ -124,37 +154,38 @@ public class TrackingFrame extends JFrame {
             trackingPane.add(viewTypePane, c);
 
             c.gridwidth = GridBagConstraints.REMAINDER;
-            c.gridheight = 3;
-            c.ipady = 30;
-            c.weightx = 1.0;
-            c.weighty = 1.0;
+            c.gridheight = 5;
+            c.ipady = 50;
+            c.weightx = 0.0;
+            c.weighty = 0.0;
             c.gridx = 0;
             c.gridy = 3;
-            if (pieClick){
-                trackingPane.add(pieChart, c);
-            }else if (exVIncClick){
-                trackingPane.add(exVIncomeChart, c);
-            }else if (listClick){
-                trackingPane.add(listChart, c);
-            }
+            trackingPane.add(blankChart,c);
+            trackingPane.add(pieChart,c);
+            pieChart.setVisible(false);
+            trackingPane.add(exVIncomeChart, c);
+            exVIncomeChart.setVisible(false);
+            trackingPane.add(listChart, c);
+            listChart.setVisible(false);
+
 
             c.gridwidth = 1;
             c.weightx = 1.0;
             c.weighty = 1.0;
             c.gridx = 0;
-            c.gridy = 4;
+            c.gridy = 8;
             trackingPane.add(setup, c);
             c.gridwidth = 1;
             c.gridx = 1;
-            c.gridy = 4;
+            c.gridy = 8;
             trackingPane.add(addExpense, c);
             c.gridwidth = 1;
             c.gridx = 2;
-            c.gridy = 4;
+            c.gridy = 8;
             trackingPane.add(tracking, c);
             c.gridwidth = 1;
             c.gridx = 3;
-            c.gridy = 4;
+            c.gridy = 8;
             trackingPane.add(userProfile, c);
 
             add(trackingPane);
@@ -172,16 +203,23 @@ public class TrackingFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == pieButton) {
-                pieClick = true;
-                new PieChart2();
+                pieChart.setVisible(true);
+                exVIncomeChart.setVisible(false);
+                listChart.setVisible(false);
+                blankChart.setVisible(false);
+
             }
             if (e.getSource() == exVIncomeButton) {
-                exVIncClick = true;
-                new PieChart();
+                pieChart.setVisible(false);
+                exVIncomeChart.setVisible(true);
+                listChart.setVisible(false);
+                blankChart.setVisible(false);
             }
             if (e.getSource() == listButton) {
-                listClick = true;
-                new PieChart();
+                pieChart.setVisible(false);
+                exVIncomeChart.setVisible(false);
+                listChart.setVisible(true);
+                blankChart.setVisible(false);
             }
         }
     }
