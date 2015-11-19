@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 public class SetupFrame extends JFrame{
     private JLabel title;
     public JTextField monthlyIncome;
+    Category incomeCat = new Category();
 
     public JCheckBox rent;
     public JCheckBox food;
@@ -31,6 +32,8 @@ public class SetupFrame extends JFrame{
     private JButton addExpense;
     private JButton tracking;
     private JButton userProfile;
+
+
 
     public SetupFrame() {
         JFrame setupFrame = new JFrame("Setup Panel");
@@ -60,6 +63,16 @@ public class SetupFrame extends JFrame{
             fuel = new JCheckBox("Fuel");
             manual = new JCheckBox("Manual Category");
             manualcat = new JTextField(20);
+
+            CheckBoxListener checkCategories = new CheckBoxListener();
+            rent.addActionListener(checkCategories);
+            food.addActionListener(checkCategories);
+            entertain.addActionListener(checkCategories);
+            loans.addActionListener(checkCategories);
+            savings.addActionListener(checkCategories);
+            credit.addActionListener(checkCategories);
+            fuel.addActionListener(checkCategories);
+            manual.addActionListener(checkCategories);
 
             submit1 = new JButton("Submit");
             setPriority = new JComboBox();
@@ -209,6 +222,7 @@ public class SetupFrame extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
+
             /*if (e.getSource() == addExpense){
                 new AddExpenseFrame();
                 new addExpenseFrame().setVisible(true);
@@ -225,4 +239,28 @@ public class SetupFrame extends JFrame{
             else;*/
         }
     }
+    private class CheckBoxListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(e.getSource() == rent){
+                Category rentMortgageCat = new Category();
+            }else if (e.getSource() == food){
+                Category foodGroceryCat = new Category();
+            }else if (e.getSource() == entertain){
+                Category entertainmentCat = new Category();
+            }else if (e.getSource() == loans){
+                Category loansCat = new Category();
+            }else if (e.getSource() == savings) {
+                Category savingsCat = new Category();
+            }else if (e.getSource() == credit){
+                Category creditCardCat = new Category();
+            }else if (e.getSource() == fuel){
+                Category fuelCat = new Category();
+            }else if (e.getSource() == manual){
+                Category manualCategory = new Category();
+            }
+        }
+    }
+
 }
