@@ -4,6 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.Objects;
+
+import static csu.csci325.Category.*;
 
 public class AddExpenseFrame extends JFrame {
 
@@ -22,6 +27,8 @@ public class AddExpenseFrame extends JFrame {
     private JButton addExpense;
     private JButton tracking;
     private JButton userProfile;
+
+    public String addTo = "";
 
     public AddExpenseFrame() {
         JFrame addExpenseFrame = new JFrame("Add Expense Panel");
@@ -46,14 +53,15 @@ public class AddExpenseFrame extends JFrame {
 
             selectCategoryLabel = new JLabel("Select category");
             categoryBox = new JComboBox(categoryArray);
-            categoryBox.addActionListener(comboBoxListener);
+            categoryBox.addItemListener(comboBoxListener);
 
 
             amountLabel = new JLabel("Amount: ");
             amount = new JTextField();
             submit = new JButton("Submit");
 
-            submit.addActionListener(comboBoxListener);
+            SubmitListener sl = new SubmitListener();
+            submit.addActionListener(sl);
 
             setup = new JButton("Setup");
             addExpense = new JButton("Add Expense");
@@ -162,87 +170,108 @@ public class AddExpenseFrame extends JFrame {
 
         }
     }
+    public class SubmitListener implements ActionListener{
 
-    public class ComboListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
-            double amountToAdd = 0;
-            //double currentAmount;
-            String addTo = "";
-            Object src = e.getSource();
-            //SOMEHOW GET SUBMIT BUTTON TO GATHER SELECTED ITEM AND TEXT IN TEXT FIELD
-
-            if (src instanceof JComboBox) {
-                JComboBox cb = (JComboBox) e.getSource();
-                //src = cb;
-                if (cb.getSelectedItem().equals("Rent/Mortgage")) {
-                    addTo = "RENT";
-                    //Category.rentMortgageCat.mIncome += amountToAdd;
-                    //System.out.println(Category.rentMortgageCat.getExpense());
-                }
-                if (cb.getSelectedItem() == "Food/Grocery") {
-                    addTo = "FOOD";
-                    //Category.foodGroceryCat.mIncome += amountToAdd;
-                    //System.out.println(Category.foodGroceryCat.getExpense());
-                }
-                if (cb.getSelectedItem() == "Entertainment") {
-                    addTo = "ENTERTAIN";
-                    //Category.entertainmentCat.mIncome += amountToAdd;
-                    //System.out.println(Category.entertainmentCat.getExpense());
-                }
-                if (cb.getSelectedItem() == "Loans") {
-                    addTo = "LOANS";
-                    //Category.loansCat.mIncome += amountToAdd;
-                    //System.out.println(Category.loansCat.getExpense());
-                }
-                if (cb.getSelectedItem() == "Savings") {
-                    addTo = "SAVINGS";
-                    //Category.savingsCat.mIncome += amountToAdd;
-                    //System.out.println(Category.savingsCat.getExpense());
-                }
-                if (cb.getSelectedItem() == "Credit") {
-                    addTo = "CREDIT";
-                    //Category.creditCat.mIncome += amountToAdd;
-                    //System.out.println(Category.creditCat.getExpense());
-                }
-                if (cb.getSelectedItem() == "Fuel") {
-                    addTo = "FUEL";
-                    //Category.fuelCat.mIncome += amountToAdd;
-                    //System.out.println(Category.fuelCat.getExpense());
-                }
-                if (cb.getSelectedItem() == "Manual") {
-                    addTo = "MANUAL";
-                    //Category.manualCat.mIncome += amountToAdd;
-                }
-            }
-
+            double amountToAdd;
             if(e.getSource() == submit) {
                 amountToAdd = Double.parseDouble(amount.getText());
-                switch (addTo){
-                    case "RENT":
-                        Category.rentMortgageCat.mExpense += amountToAdd;
-                        System.out.println(amountToAdd);
-                        System.out.println(Category.rentMortgageCat.mExpense);
-                    case "FOOD":
-                        Category.foodGroceryCat.mExpense += amountToAdd;
-                        System.out.println(amountToAdd);
-                        System.out.println(Category.foodGroceryCat.getExpense());
-                    case "ENTERTAIN":
-                        Category.entertainmentCat.mExpense += amountToAdd;
-                    case "LOANS":
-                        Category.loansCat.mExpense += amountToAdd;
-                    case "SAVINGS":
-                        Category.savingsCat.mExpense += amountToAdd;
-                    case "CREDIT":
-                        Category.creditCat.mExpense += amountToAdd;
-                    case "FUEL":
-                        Category.fuelCat.mExpense += amountToAdd;
-                    case "MANUAL":
-                        Category.manualCat.mExpense += amountToAdd;
-                        break;
-                    default: break;
+                //System.out.println("Before switch statement: " + amountToAdd);
+                //System.out.println("Rent income: " + rentMortgageCat.mExpense);
+                System.out.println("Category: " + addTo);
+                if (Objects.equals(addTo, "RENT")) {
+                    rentMortgageCat.mExpense += amountToAdd;
+                    System.out.println("After adding to Rent: " + rentMortgageCat.mExpense);
+                    amount.setText("");
+                    }
+                else if (addTo.equals("FOOD")) {
+                    foodGroceryCat.mExpense += amountToAdd;
+                    System.out.println("After adding to Food: " + foodGroceryCat.getExpense());
+                    amount.setText("");
+                    }
+                else if (addTo.equals("ENTERTAIN")) {
+                    Category.entertainmentCat.mExpense += amountToAdd;
+                    System.out.println("After adding to Entertainment " + entertainmentCat.getExpense());
+                    amount.setText("");
+                }
+                else if (addTo.equals("LOANS")) {
+                    Category.loansCat.mExpense += amountToAdd;
+                    System.out.println("After adding to Loans: " + loansCat.getExpense());
+                    amount.setText("");
+                }
+                else if (addTo.equals("SAVINGS")) {
+                    Category.savingsCat.mExpense += amountToAdd;
+                    System.out.println("After adding to Savings: " + savingsCat.getExpense());
+                    amount.setText("");
+                }
+                else if (addTo.equals("CREDIT")) {
+                    Category.creditCat.mExpense += amountToAdd;
+                    System.out.println("After adding to Credit: " + creditCat.getExpense());
+                    amount.setText("");
+                }
+                else if (addTo.equals("FUEL")) {
+                    Category.fuelCat.mExpense += amountToAdd;
+                    System.out.println("After adding to Fuel: " + fuelCat.getExpense());
+                    amount.setText("");
+                }
+                else if (addTo.equals("MANUAL")) {
+                    Category.manualCat.mExpense += amountToAdd;
+                    System.out.println("After adding to Manual: " + manualCat.getExpense());
+                    amount.setText("");
                 }
             }
+            else;
+        }
+    }
+
+    public class ComboListener implements ItemListener{
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            JComboBox cb = (JComboBox) e.getSource();
+            if (cb.getSelectedItem().equals("Rent/Mortgage")) {
+                addTo = "RENT";
+                //System.out.println(addTo);
+                //Category.rentMortgageCat.mIncome += amountToAdd;
+                //System.out.println(Category.rentMortgageCat.getExpense());
+            }
+            else if (cb.getSelectedItem().equals("Food/Grocery")) {
+                addTo = "FOOD";
+                //System.out.println(addTo);
+                //Category.foodGroceryCat.mIncome += amountToAdd;
+                //System.out.println(Category.foodGroceryCat.getExpense());
+            }
+            else if (cb.getSelectedItem().equals("Entertainment")) {
+                addTo = "ENTERTAIN";
+                //System.out.println(addTo);
+                //Category.entertainmentCat.mIncome += amountToAdd;
+                //System.out.println(Category.entertainmentCat.getExpense());
+            }
+            else if (cb.getSelectedItem().equals("Loans")) {
+                addTo = "LOANS";
+                //Category.loansCat.mIncome += amountToAdd;
+                //System.out.println(Category.loansCat.getExpense());
+            }
+            else if (cb.getSelectedItem().equals("Savings")) {
+                addTo = "SAVINGS";
+                //Category.savingsCat.mIncome += amountToAdd;
+                //System.out.println(Category.savingsCat.getExpense());
+            }
+            else if (cb.getSelectedItem().equals("Credit")) {
+                addTo = "CREDIT";
+                //Category.creditCat.mIncome += amountToAdd;
+                //System.out.println(Category.creditCat.getExpense());
+            }
+            else if (cb.getSelectedItem().equals("Fuel")) {
+                addTo = "FUEL";
+                //Category.fuelCat.mIncome += amountToAdd;
+                //System.out.println(Category.fuelCat.getExpense());
+            }
+            else if (cb.getSelectedItem().equals("Manual")) {
+                addTo = "MANUAL";
+                //Category.manualCat.mIncome += amountToAdd;
+            }
+            else;
         }
     }
 }

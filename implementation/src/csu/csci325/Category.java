@@ -4,16 +4,17 @@ package csu.csci325;
  * Created by BBrak on 11/19/2015.
  */
 public class Category {
-    public static Category rentMortgageCat;
-    public static Category foodGroceryCat;
-    public static Category entertainmentCat;
-    public static Category loansCat;
-    public static Category savingsCat;
-    public static Category creditCat;
-    public static Category fuelCat;
-    public static Category manualCat;
     public double mExpense;
     public double mIncome;
+
+    public static Category rentMortgageCat = new Category();
+    public static Category foodGroceryCat = new Category();
+    public static Category entertainmentCat = new Category();
+    public static Category loansCat = new Category();
+    public static Category savingsCat = new Category();
+    public static Category creditCat = new Category();
+    public static Category fuelCat = new Category();
+    public static Category manualCat = new Category();
 
     Category() {
         mIncome = 0;
