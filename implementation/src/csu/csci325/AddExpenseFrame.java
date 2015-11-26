@@ -29,7 +29,7 @@ public class AddExpenseFrame extends JFrame {
     public AddExpenseFrame() {
         JFrame addExpenseFrame = new JFrame("Add Expense Panel");
 
-        addExpenseFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addExpenseFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //addExpenseFrame.setPreferredSize(new Dimension(400, 300));
         AddExpensePanel addExpensePanel = new AddExpensePanel();
@@ -45,8 +45,15 @@ public class AddExpenseFrame extends JFrame {
             title = new JLabel("Add Expense");
             title.setFont(new Font("Arial", Font.BOLD, 28));
 
+            AddListListener addLListener = new AddListListener();
+
             selectCategoryLabel = new JLabel("Select category");
-            categoryBox = new JComboBox(categoryNames);
+            categoryBox = new JComboBox();
+            /*for (int i = 0; i < 10; i++){
+                categoryBox.setSelectedIndex(i);
+            }*/
+
+
 
             amountLabel = new JLabel("Amount: ");
             amount = new JTextField();
@@ -153,6 +160,14 @@ public class AddExpenseFrame extends JFrame {
         }
     }
     private class ButtonListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
+    }
+
+    private class AddListListener implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {

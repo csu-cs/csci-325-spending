@@ -127,7 +127,7 @@ public class StartFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == setup) {
                 new SetupFrame();
-                dispose();
+                //dispose();
             }
             else if (e.getSource() == addExpense){
                 //if ()
@@ -140,11 +140,11 @@ public class StartFrame extends JFrame {
                 new TrackingFrame();
                 //new trackingFrame().setVisible(true);
                 //this.dispose();
-            }/*
+            }
             else if (e.getSource() == userProfile){
-                new userProfileFrame().setVisible(true);
-                this.dispose();
-            }*/
+                new UserProfileFrame();
+                //this.dispose();
+            }
             else;
         }
     }

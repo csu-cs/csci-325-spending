@@ -14,10 +14,6 @@ public class TrackingFrame extends JFrame {
     private JButton exVIncomeButton;
     private JButton listButton;
 
-    boolean pieClick = false;
-    boolean exVIncClick = false;
-    boolean listClick = false;
-
     private JPanel pieChart = new JPanel();
     private JPanel exVIncomeChart = new JPanel();
     private JPanel listChart = new JPanel();
@@ -32,7 +28,7 @@ public class TrackingFrame extends JFrame {
     public TrackingFrame() {
         JFrame TrackingFrame = new JFrame("Tracking Panel");
 
-        TrackingFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        TrackingFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //addExpenseFrame.setPreferredSize(new Dimension(400, 300));
         TrackingPanel trackingPanel = new TrackingPanel();

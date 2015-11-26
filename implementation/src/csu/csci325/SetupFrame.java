@@ -22,10 +22,10 @@ public class SetupFrame extends JFrame{
     public JCheckBox fuel;
     public JCheckBox manual;
     public JTextField manualcat;
-
     public JButton submit1;
-    public JComboBox setPriority;
-    public JButton submit2;
+
+
+    public CategoryList catList = new CategoryList();
 
 
     private JButton setup;
@@ -38,7 +38,7 @@ public class SetupFrame extends JFrame{
     public SetupFrame() {
         JFrame setupFrame = new JFrame("Setup Panel");
 
-        setupFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setupFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         //setupFrame.setPreferredSize(new Dimension(400, 300));
         SetupPanel setupPanel = new SetupPanel();
@@ -64,7 +64,10 @@ public class SetupFrame extends JFrame{
             manual = new JCheckBox("Manual Category");
             manualcat = new JTextField(20);
 
-            CheckBoxListener checkCategories = new CheckBoxListener();
+            submit1 = new JButton("Submit");
+
+            SetupListener checkCategories = new SetupListener();
+            monthlyIncome.addActionListener(checkCategories);
             rent.addActionListener(checkCategories);
             food.addActionListener(checkCategories);
             entertain.addActionListener(checkCategories);
@@ -73,10 +76,9 @@ public class SetupFrame extends JFrame{
             credit.addActionListener(checkCategories);
             fuel.addActionListener(checkCategories);
             manual.addActionListener(checkCategories);
+            submit1.addActionListener(checkCategories);
 
-            submit1 = new JButton("Submit");
-            setPriority = new JComboBox();
-            submit2 = new JButton("Submit");
+
 
             setup = new JButton("Setup");
             addExpense = new JButton("Add Expense");
@@ -123,14 +125,14 @@ public class SetupFrame extends JFrame{
             }
             selectPane.add(submit1);
 
-            JPanel priorityPane = new JPanel();
+            /*JPanel priorityPane = new JPanel();
             priorityPane.setLayout(new BoxLayout(priorityPane, BoxLayout.LINE_AXIS));
             JLabel priorityLabel = new JLabel("Select your top categories: ");
             priorityPane.add(priorityLabel);
             priorityPane.add(setPriority);
             priorityPane.add(Box.createHorizontalStrut(100));
             priorityPane.add(Box.createVerticalBox());
-            priorityPane.add(submit2);
+            priorityPane.add(submit2);*/
 
 
             JPanel buttonsPane = new JPanel();
@@ -188,30 +190,30 @@ public class SetupFrame extends JFrame{
             c.gridy = 3;
             setupPane.add(selectPane, c);
 
-            c.gridwidth = GridBagConstraints.REMAINDER;
+            /*c.gridwidth = GridBagConstraints.REMAINDER;
             c.weightx = 1.0;
             c.weighty = 1;
             c.gridx = 0;
             c.gridy = 4;
-            setupPane.add(priorityPane, c);
+            setupPane.add(priorityPane, c);*/
 
             c.gridwidth = 1;
             c.weightx = 1.0;
             c.weighty = 1.0;
             c.gridx = 0;
-            c.gridy = 5;
+            c.gridy = 4;
             setupPane.add(setup, c);
             c.gridwidth = 1;
             c.gridx = 1;
-            c.gridy = 5;
+            c.gridy = 4;
             setupPane.add(addExpense, c);
             c.gridwidth = 1;
             c.gridx = 2;
-            c.gridy = 5;
+            c.gridy = 4;
             setupPane.add(tracking, c);
             c.gridwidth = 1;
             c.gridx = 3;
-            c.gridy = 5;
+            c.gridy = 4;
             setupPane.add(userProfile, c);
 
             add(setupPane);
@@ -239,26 +241,51 @@ public class SetupFrame extends JFrame{
             else;*/
         }
     }
-    private class CheckBoxListener implements ActionListener {
+
+    public class SetupListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(e.getSource() == rent){
-                Category rentMortgageCat = new Category();
-            }else if (e.getSource() == food){
-                Category foodGroceryCat = new Category();
-            }else if (e.getSource() == entertain){
-                Category entertainmentCat = new Category();
-            }else if (e.getSource() == loans){
-                Category loansCat = new Category();
-            }else if (e.getSource() == savings) {
-                Category savingsCat = new Category();
-            }else if (e.getSource() == credit){
-                Category creditCardCat = new Category();
-            }else if (e.getSource() == fuel){
-                Category fuelCat = new Category();
-            }else if (e.getSource() == manual){
-                Category manualCategory = new Category();
+            double income;
+
+            if (e.getSource() == submit1) {
+                //SHOW ERROR MESSAGE IF TEXT BOX IS EMPTY
+                income = Double.parseDouble(monthlyIncome.getText());
+                incomeCat.mIncome = income;
+                if(rent.isSelected()){
+                    Category rentMortgageCat = new Category();
+                    catList.addString("Rent/Mortgage");
+
+                }
+                else if (food.isSelected()){
+                    Category foodGroceryCat = new Category();
+                    catList.addString("Food/Grocery");
+                }
+                else if (entertain.isSelected()){
+                    Category entertainmentCat = new Category();
+                    catList.addString("Entertainment");
+                }
+                else if (loans.isSelected()){
+                    Category loansCat = new Category();
+                    catList.addString("Loans");
+                }
+                else if (savings.isSelected()) {
+                    Category savingsCat = new Category();
+                    catList.addString("Savings");
+                }
+                else if (credit.isSelected()){
+                    Category creditCardCat = new Category();
+                    catList.addString("Credit");
+                }
+                else if (fuel.isSelected()){
+                    Category fuelCat = new Category();
+                    catList.addString("Fuel");
+                }
+                else if (manual.isSelected()){
+                    Category manualCategory = new Category();
+                    catList.addString("Manual");
+                }
+                else;
             }
         }
     }

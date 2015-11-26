@@ -4,8 +4,8 @@ package csu.csci325;
  * Created by BBrak on 11/19/2015.
  */
 public class Category {
-    private double mExpense;
-    private double mIncome;
+    public double mExpense;
+    public double mIncome;
 
     Category() {
         mIncome = 0;
