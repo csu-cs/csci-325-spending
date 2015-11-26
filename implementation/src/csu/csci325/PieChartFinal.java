@@ -83,8 +83,8 @@ public class PieChartFinal extends JPanel {
                 Double angle = (val / 100) * 360;
 
                 g2d.fillArc(0, 0, width, width, lastPoint, -angle.intValue());
-                System.out.println("fill arc " + lastPoint + " "
-                        + -angle.intValue());
+                //System.out.println("fill arc " + lastPoint + " "
+                        //+ -angle.intValue());
 
                 lastPoint = lastPoint + -angle.intValue();
             }

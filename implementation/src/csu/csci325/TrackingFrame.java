@@ -19,6 +19,8 @@ public class TrackingFrame extends JFrame {
     private JPanel listChart = new JPanel();
     private JPanel blankChart = new JPanel();
 
+    private JTextArea list = new JTextArea(10,1);
+
     private JButton setup;
     private JButton addExpense;
     private JButton tracking;
@@ -56,6 +58,7 @@ public class TrackingFrame extends JFrame {
             exVIncomeChart = new JPanel();
             listChart = new JPanel();
             blankChart = new JPanel();
+            list = new JTextArea(10,1);
 
             ButtonListener listener = new ButtonListener();
             setup.addActionListener(listener);
@@ -76,14 +79,16 @@ public class TrackingFrame extends JFrame {
             viewTypePane.add(listButton);
 
             //PIE CHART
-            //PASS IN VALUES FROM CATEGORIES
-            //WILL LIKELY BE FOR LOOPS FOR EACH CATEGORY
-            ArrayList<Double> values = new ArrayList<Double>();
-            values.add(new Double(10));
+            System.out.println("Total Expenses: $" + TrackingData.td.getTotalExpense());
+
+            ArrayList values;
+            values = TrackingData.td.toPieChart();
+
+            /*values.add(new Double(10));
             values.add(new Double(20));
             values.add(new Double(30));
             values.add(new Double(15));
-            values.add(new Double(15));
+            values.add(new Double(15));*/
 
             ArrayList<Color> colors = new ArrayList<Color>();
             colors.add(Color.gray);
@@ -91,10 +96,20 @@ public class TrackingFrame extends JFrame {
             colors.add(Color.blue);
             colors.add(Color.pink);
             colors.add(Color.yellow);
+            colors.add(Color.red);
+            colors.add(Color.cyan);
+            colors.add(Color.black);
+            colors.add(Color.orange);
 
             PieChartFinal pc = new PieChartFinal(values, colors);
-            pc.setSize(200,200);
+            pc.setSize(150, 150);
             pieChart.add(pc);
+
+            //LIST CHART
+            ArrayList lc;
+            lc = TrackingData.td.toList();
+            list = (JTextArea) lc.listIterator();
+            listChart.add(list);
 
             //JPanel exVIncomeChart = new JPanel();
             //JPanel listChart = new JPanel();
@@ -150,8 +165,8 @@ public class TrackingFrame extends JFrame {
             trackingPane.add(viewTypePane, c);
 
             c.gridwidth = GridBagConstraints.REMAINDER;
-            c.gridheight = 5;
-            c.ipady = 50;
+            c.gridheight = 4;
+            c.ipady = 40;
             c.weightx = 0.0;
             c.weighty = 0.0;
             c.gridx = 0;
@@ -169,19 +184,19 @@ public class TrackingFrame extends JFrame {
             c.weightx = 1.0;
             c.weighty = 1.0;
             c.gridx = 0;
-            c.gridy = 8;
+            c.gridy = 7;
             trackingPane.add(setup, c);
             c.gridwidth = 1;
             c.gridx = 1;
-            c.gridy = 8;
+            c.gridy = 7;
             trackingPane.add(addExpense, c);
             c.gridwidth = 1;
             c.gridx = 2;
-            c.gridy = 8;
+            c.gridy = 7;
             trackingPane.add(tracking, c);
             c.gridwidth = 1;
             c.gridx = 3;
-            c.gridy = 8;
+            c.gridy = 7;
             trackingPane.add(userProfile, c);
 
             add(trackingPane);
