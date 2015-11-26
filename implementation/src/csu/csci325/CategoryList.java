@@ -12,8 +12,16 @@ public class CategoryList {
         categoryList.add(cat);
     }
 
-    ArrayList get() {
-        return categoryList;
+    String[] getAsArray() {
+        String catL[] = (String[]) categoryList.toArray(new String[categoryList.size()]);
+        return catL;
+    }
+
+    public void ListToString(){
+        String catL[] = (String[]) categoryList.toArray(new String[categoryList.size()]);
+        for (int i = 0; i < catL.length; i++) {
+            System.out.println(catL[i]);
+        }
     }
 
 }

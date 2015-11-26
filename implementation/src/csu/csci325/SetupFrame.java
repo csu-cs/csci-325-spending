@@ -252,41 +252,42 @@ public class SetupFrame extends JFrame{
                 //SHOW ERROR MESSAGE IF TEXT BOX IS EMPTY
                 income = Double.parseDouble(monthlyIncome.getText());
                 incomeCat.mIncome = income;
+                System.out.println("Monthly Income:" + incomeCat.mIncome);
                 if(rent.isSelected()){
                     Category rentMortgageCat = new Category();
                     catList.addString("Rent/Mortgage");
-
                 }
-                else if (food.isSelected()){
+                if (food.isSelected()){
                     Category foodGroceryCat = new Category();
                     catList.addString("Food/Grocery");
                 }
-                else if (entertain.isSelected()){
+                if (entertain.isSelected()){
                     Category entertainmentCat = new Category();
                     catList.addString("Entertainment");
                 }
-                else if (loans.isSelected()){
+                if (loans.isSelected()){
                     Category loansCat = new Category();
                     catList.addString("Loans");
                 }
-                else if (savings.isSelected()) {
+                if (savings.isSelected()) {
                     Category savingsCat = new Category();
                     catList.addString("Savings");
                 }
-                else if (credit.isSelected()){
+                if (credit.isSelected()){
                     Category creditCardCat = new Category();
                     catList.addString("Credit");
                 }
-                else if (fuel.isSelected()){
+                if (fuel.isSelected()){
                     Category fuelCat = new Category();
                     catList.addString("Fuel");
                 }
-                else if (manual.isSelected()){
+                if (manual.isSelected()){
                     Category manualCategory = new Category();
                     catList.addString("Manual");
                 }
-                else;
             }
+            //catList.ListToString();
+            AddExpenseFrame.categoryArray = catList.getAsArray();
         }
     }
 

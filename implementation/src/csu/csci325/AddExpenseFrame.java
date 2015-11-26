@@ -12,10 +12,7 @@ public class AddExpenseFrame extends JFrame {
     private JLabel selectCategoryLabel;
     private JComboBox categoryBox;
 
-    //String passed in of active categories from setup frame
-    public String[] categoryNames = {"Rent/Mortgage", "Food/Grocery",
-        "Entertainment", "Loans", "Savings", "Credit Card", "Fuel", "Manual Category" };
-
+    public static String[] categoryArray;
 
     private JLabel amountLabel;
     private JTextField amount;
@@ -45,19 +42,18 @@ public class AddExpenseFrame extends JFrame {
             title = new JLabel("Add Expense");
             title.setFont(new Font("Arial", Font.BOLD, 28));
 
-            AddListListener addLListener = new AddListListener();
+            ComboListener comboBoxListener = new ComboListener();
 
             selectCategoryLabel = new JLabel("Select category");
-            categoryBox = new JComboBox();
-            /*for (int i = 0; i < 10; i++){
-                categoryBox.setSelectedIndex(i);
-            }*/
-
+            categoryBox = new JComboBox(categoryArray);
+            categoryBox.addActionListener(comboBoxListener);
 
 
             amountLabel = new JLabel("Amount: ");
             amount = new JTextField();
             submit = new JButton("Submit");
+
+            submit.addActionListener(comboBoxListener);
 
             setup = new JButton("Setup");
             addExpense = new JButton("Add Expense");
@@ -167,11 +163,86 @@ public class AddExpenseFrame extends JFrame {
         }
     }
 
-    private class AddListListener implements ActionListener{
-
+    public class ComboListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
+            double amountToAdd = 0;
+            //double currentAmount;
+            String addTo = "";
+            Object src = e.getSource();
+            //SOMEHOW GET SUBMIT BUTTON TO GATHER SELECTED ITEM AND TEXT IN TEXT FIELD
 
+            if (src instanceof JComboBox) {
+                JComboBox cb = (JComboBox) e.getSource();
+                //src = cb;
+                if (cb.getSelectedItem().equals("Rent/Mortgage")) {
+                    addTo = "RENT";
+                    //Category.rentMortgageCat.mIncome += amountToAdd;
+                    //System.out.println(Category.rentMortgageCat.getExpense());
+                }
+                if (cb.getSelectedItem() == "Food/Grocery") {
+                    addTo = "FOOD";
+                    //Category.foodGroceryCat.mIncome += amountToAdd;
+                    //System.out.println(Category.foodGroceryCat.getExpense());
+                }
+                if (cb.getSelectedItem() == "Entertainment") {
+                    addTo = "ENTERTAIN";
+                    //Category.entertainmentCat.mIncome += amountToAdd;
+                    //System.out.println(Category.entertainmentCat.getExpense());
+                }
+                if (cb.getSelectedItem() == "Loans") {
+                    addTo = "LOANS";
+                    //Category.loansCat.mIncome += amountToAdd;
+                    //System.out.println(Category.loansCat.getExpense());
+                }
+                if (cb.getSelectedItem() == "Savings") {
+                    addTo = "SAVINGS";
+                    //Category.savingsCat.mIncome += amountToAdd;
+                    //System.out.println(Category.savingsCat.getExpense());
+                }
+                if (cb.getSelectedItem() == "Credit") {
+                    addTo = "CREDIT";
+                    //Category.creditCat.mIncome += amountToAdd;
+                    //System.out.println(Category.creditCat.getExpense());
+                }
+                if (cb.getSelectedItem() == "Fuel") {
+                    addTo = "FUEL";
+                    //Category.fuelCat.mIncome += amountToAdd;
+                    //System.out.println(Category.fuelCat.getExpense());
+                }
+                if (cb.getSelectedItem() == "Manual") {
+                    addTo = "MANUAL";
+                    //Category.manualCat.mIncome += amountToAdd;
+                }
+            }
+
+            if(e.getSource() == submit) {
+                amountToAdd = Double.parseDouble(amount.getText());
+                switch (addTo){
+                    case "RENT":
+                        Category.rentMortgageCat.mExpense += amountToAdd;
+                        System.out.println(amountToAdd);
+                        System.out.println(Category.rentMortgageCat.mExpense);
+                    case "FOOD":
+                        Category.foodGroceryCat.mExpense += amountToAdd;
+                        System.out.println(amountToAdd);
+                        System.out.println(Category.foodGroceryCat.getExpense());
+                    case "ENTERTAIN":
+                        Category.entertainmentCat.mExpense += amountToAdd;
+                    case "LOANS":
+                        Category.loansCat.mExpense += amountToAdd;
+                    case "SAVINGS":
+                        Category.savingsCat.mExpense += amountToAdd;
+                    case "CREDIT":
+                        Category.creditCat.mExpense += amountToAdd;
+                    case "FUEL":
+                        Category.fuelCat.mExpense += amountToAdd;
+                    case "MANUAL":
+                        Category.manualCat.mExpense += amountToAdd;
+                        break;
+                    default: break;
+                }
+            }
         }
     }
 }
