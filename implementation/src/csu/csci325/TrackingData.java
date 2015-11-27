@@ -5,6 +5,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static csu.csci325.Category.*;
+import static csu.csci325.ColorUtils.*;
 
 /**
  * Created by N'dia on 11/26/2015.
@@ -122,9 +123,53 @@ public class TrackingData {
     String toTextField() {
         String str = "";
         for (int i = 0; i < toList().size(); i++){
-            str += ("-" + toList().get(i) + "\n");
+            str += ("<html>-" + toList().get(i) + "<br>");
         }
         return str;
+    }
+
+    String pieChartData() {
+        String pcd = "";
+        String namePercentage = "";
+        String colorName = "";
+        double total = getTotalExpense();
+
+        //DOES NOT WORK IF TWO PERCENTAGES ARE THE EXACT SAME
+        for (int i = 0; i < TrackingData.td.toPieChart().size(); i++){
+            if (toPieChart().get(i).equals(rentMortgageCat.getExpense() /total * 100)) {
+            namePercentage = ("Rent/Mortgage " + ((rentMortgageCat.getExpense() /total) * 100) + "%");
+            }
+            else if (toPieChart().get(i).equals(foodGroceryCat.getExpense() /total * 100)) {
+                namePercentage = ("Food/Grocery " + ((foodGroceryCat.getExpense()/total) * 100) + "%");
+            }
+            else if (toPieChart().get(i).equals(entertainmentCat.getExpense() /total * 100)) {
+                namePercentage = ("Entertainment " + ((entertainmentCat.getExpense()/total) * 100) + "%");
+            }
+            else if (toPieChart().get(i).equals(loansCat.getExpense() /total * 100)) {
+                namePercentage = ("Loans " + ((loansCat.getExpense()/total) * 100) + "%");
+            }
+            else if (toPieChart().get(i).equals(savingsCat.getExpense() /total * 100)) {
+                namePercentage = ("Savings " + ((savingsCat.getExpense()/total) * 100) + "%");
+            }
+            if (toPieChart().get(i).equals(creditCat.getExpense() /total * 100)) {
+                namePercentage = ("Credit" + ((creditCat.getExpense()/total) * 100) + "%");
+            }
+            if (toPieChart().get(i).equals(fuelCat.getExpense() /total * 100)) {
+                namePercentage = ("Fuel " + ((fuelCat.getExpense()/total) * 100) + "%");
+            }
+            if (toPieChart().get(i).equals(manualCat.getExpense() /total * 100)) {
+                if (SetupFrame.manualName.isEmpty()){
+                    namePercentage = ("Manual" + ((manualCat.getExpense()/total) * 100) + "%");
+                }
+                else
+                    namePercentage = (SetupFrame.manualName + ((manualCat.getExpense()/total) * 100) + "%");
+            }
+            colorName = ColorUtils.colorUtils.getColorNameFromRgb(createPieChart().colors.get(i).getRed(),
+                    createPieChart().colors.get(i).getGreen(), createPieChart().colors.get(i).getBlue());
+            pcd += ("<html>-" + colorName + ": " + namePercentage + "<br>");
+        }
+
+        return pcd;
     }
 
     PieChartFinal createPieChart() {
@@ -144,14 +189,16 @@ public class TrackingData {
         colors.add(Color.orange);
 
         PieChartFinal pc = new PieChartFinal(values, colors);
-        pc.setSize(150, 150);
+        //pc.setSize(150, 150);
+        pc.setMaximumSize(new Dimension(400,400));
+        //pc.setPreferredSize(new Dimension(250,250));
         return pc;
     }
 
     JProgressBar createProgressBar() {
         JProgressBar pb = new JProgressBar();
-        System.out.println("Income: $" + incomeCat.getIncome());
-        System.out.println("Expense Percentage: " + (getTotalExpense() / (Category.incomeCat.getIncome() * 1)));
+        //System.out.println("Income: $" + incomeCat.getIncome());
+        //System.out.println("Expense Percentage: " + (getTotalExpense() / (Category.incomeCat.getIncome() * 1)));
         pb = new JProgressBar(0,(int) Category.incomeCat.getIncome());
         pb.setValue((int) getTotalExpense());
         pb.setStringPainted(true);

@@ -23,14 +23,10 @@ public class AddExpenseFrame extends JFrame {
     private JTextField amount;
     private JButton submit;
 
-    private JButton setup;
-    private JButton addExpense;
-    private JButton tracking;
-    private JButton userProfile;
-
     //static JPanel addExpensePane = new JPanel();
     private JLabel warningLabel = new JLabel();
     private JLabel updateLabel = new JLabel();
+    private JLabel infoLabel = new JLabel();
 
     public String addTo = "";
 
@@ -39,7 +35,7 @@ public class AddExpenseFrame extends JFrame {
 
         addExpenseFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        addExpenseFrame.setPreferredSize(new Dimension(400, 375));
+        addExpenseFrame.setPreferredSize(new Dimension(400, 425));
         AddExpensePanel addExpensePanel = new AddExpensePanel();
         addExpenseFrame.getContentPane().add(addExpensePanel);
 
@@ -60,7 +56,8 @@ public class AddExpenseFrame extends JFrame {
             categoryBox.addItemListener(comboBoxListener);
 
 
-            amountLabel = new JLabel("Amount: ");
+            amountLabel = new JLabel("<html>Enter the Amount in decimal format" +
+                    "<br>" + "without '$' or other special characters.</html>");
             amount = new JTextField();
             submit = new JButton("Submit");
 
@@ -69,18 +66,8 @@ public class AddExpenseFrame extends JFrame {
 
             warningLabel = new JLabel("");
             updateLabel = new JLabel("");
+            infoLabel = new JLabel("");
 
-
-            /*setup = new JButton("Setup");
-            addExpense = new JButton("Add Expense");
-            tracking = new JButton("Tracking");
-            userProfile = new JButton("User Profile");
-
-            ButtonListener listener = new ButtonListener();
-            setup.addActionListener(listener);
-            addExpense.addActionListener(listener);
-            tracking.addActionListener(listener);
-            userProfile.addActionListener(listener);*/
 
             //PANELS
             JPanel categoryPane = new JPanel();
@@ -95,14 +82,7 @@ public class AddExpenseFrame extends JFrame {
             addAmountPane.add(submit);
             addAmountPane.add(warningLabel);
             addAmountPane.add(updateLabel);
-
-            /*JPanel buttonsPane = new JPanel();
-            buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.LINE_AXIS));
-            buttonsPane.add(Box.createHorizontalGlue());
-            buttonsPane.add(setup);
-            buttonsPane.add(addExpense);
-            buttonsPane.add(tracking);
-            buttonsPane.add(userProfile);*/
+            addAmountPane.add(infoLabel);
 
             JPanel addExpensePane = new JPanel();
             addExpensePane.setLayout(new GridBagLayout());
@@ -150,35 +130,10 @@ public class AddExpenseFrame extends JFrame {
             c.gridy = 3;
             addExpensePane.add(addAmountPane, c);
 
-            /*c.gridwidth = 1;
-            c.weightx = 1.0;
-            c.weighty = 1.0;
-            c.gridx = 0;
-            c.gridy = 4;
-            addExpensePane.add(setup, c);
-            c.gridwidth = 1;
-            c.gridx = 1;
-            c.gridy = 4;
-            addExpensePane.add(addExpense, c);
-            c.gridwidth = 1;
-            c.gridx = 2;
-            c.gridy = 4;
-            addExpensePane.add(tracking, c);
-            c.gridwidth = 1;
-            c.gridx = 3;
-            c.gridy = 4;
-            addExpensePane.add(userProfile, c);*/
-
             add(addExpensePane);
         }
     }
-    private class ButtonListener implements ActionListener{
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-        }
-    }
     public class SubmitListener implements ActionListener{
 
         @Override
@@ -186,9 +141,30 @@ public class AddExpenseFrame extends JFrame {
             double amountToAdd;
             String warning;
             String update;
+            String info;
+
+            warningLabel.setText("");
+
             if(e.getSource() == submit) {
+                if (amount.getText().isEmpty()){
+                    warningLabel.setForeground(Color.red);
+                    warningLabel.setText("Please enter an amount!");
+                }
+                else if (amount != null) {
+                    try {
+                        Double.parseDouble(amount.getText());
+                        //System.out.println("Parse successful.");
+                    } catch (NumberFormatException nfe) {
+                        //System.out.println("Parse unsuccessful.");
+                        warningLabel.setForeground(Color.red);
+                        warningLabel.setText("Input a decimal number without special characters.");
+                    }
+                }
+
                 amountToAdd = Double.parseDouble(amount.getText());
-                System.out.println("Category: " + addTo);
+
+                //
+                // System.out.println("Category: " + addTo);
                 if (Objects.equals(addTo, "RENT")) {
                     rentMortgageCat.mExpense += amountToAdd;
                     //System.out.println("After adding to Rent: " + rentMortgageCat.getExpense());
@@ -271,6 +247,11 @@ public class AddExpenseFrame extends JFrame {
                 warningLabel.setForeground(Color.red);
                 warningLabel.setText(warning);
             }
+            info = ("<html>" + "Add another expense"
+            + "<br>" + "or close this window and click 'Tracking'"
+            + "<br>" + "to view the tracking charts." + "</html>");
+            infoLabel.setForeground(Color.blue);
+            infoLabel.setText(info);
         }
     }
 
@@ -278,7 +259,7 @@ public class AddExpenseFrame extends JFrame {
         @Override
         public void itemStateChanged(ItemEvent e) {
             JComboBox cb = (JComboBox) e.getSource();
-            System.out.println("Manual category name: " + SetupFrame.manualName);
+            //System.out.println("Manual category name: " + SetupFrame.manualName);
             if (cb.getSelectedItem().equals("Rent/Mortgage")) {
                 addTo = "RENT";
             }

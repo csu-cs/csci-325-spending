@@ -20,7 +20,7 @@ public class PieChartFinal extends JPanel {
     private Type type = null; //the type of pie chart
 
     private ArrayList<Double> values;
-    private ArrayList<Color> colors;
+    public ArrayList<Color> colors;
 
     private ArrayList<Double> gradingValues;
     private ArrayList<Color> gradingColors;

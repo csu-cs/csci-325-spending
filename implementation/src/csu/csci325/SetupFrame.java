@@ -185,32 +185,6 @@ public class SetupFrame extends JFrame{
             c.gridy = 3;
             setupPane.add(selectPane, c);
 
-            /*c.gridwidth = GridBagConstraints.REMAINDER;
-            c.weightx = 1.0;
-            c.weighty = 1;
-            c.gridx = 0;
-            c.gridy = 4;
-            setupPane.add(priorityPane, c);*/
-
-            /*c.gridwidth = 1;
-            c.weightx = 1.0;
-            c.weighty = 1.0;
-            c.gridx = 0;
-            c.gridy = 4;
-            setupPane.add(setup, c);
-            c.gridwidth = 1;
-            c.gridx = 1;
-            c.gridy = 4;
-            setupPane.add(addExpense, c);
-            c.gridwidth = 1;
-            c.gridx = 2;
-            c.gridy = 4;
-            setupPane.add(tracking, c);
-            c.gridwidth = 1;
-            c.gridx = 3;
-            c.gridy = 4;
-            setupPane.add(userProfile, c);*/
-
             add(setupPane);
         }
 
