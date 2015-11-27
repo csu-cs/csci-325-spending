@@ -73,7 +73,7 @@ public class TrackingData {
         if (creditCat.getExpense() != 0) {
             percentages.add((creditCat.getExpense()/total) * 100);
         }
-        if (foodGroceryCat.getExpense() != 0) {
+        if (fuelCat.getExpense() != 0) {
             percentages.add((fuelCat.getExpense()/total) * 100);
         }
         if (manualCat.getExpense() != 0) {
@@ -108,8 +108,13 @@ public class TrackingData {
         if (fuelCat.getExpense() != 0 && activeCategories.contains("Fuel")) {
             listValues.add("Fuel: $" + fuelCat.getExpense());
         }
-        if (manualCat.getExpense() != 0 && activeCategories.contains("Manual")) {
-            listValues.add("Manual: $" + manualCat.getExpense());
+        if (manualCat.getExpense() != 0){
+            if (activeCategories.contains("Manual")){
+                listValues.add("Manual: $" + manualCat.getExpense());
+            }
+            else if (activeCategories.contains(SetupFrame.manualName)){
+                listValues.add(SetupFrame.manualName + ": $" + manualCat.getExpense());
+            }
         }
         return listValues;
     }

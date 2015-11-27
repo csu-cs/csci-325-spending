@@ -255,14 +255,17 @@ public class AddExpenseFrame extends JFrame {
                 else if (addTo.equals("MANUAL")) {
                     Category.manualCat.mExpense += amountToAdd;
                     //System.out.println("After adding to Manual: " + manualCat.getExpense());
-                    update = ("<html>" + "Amount added to Manual: $" + amountToAdd
-                            + "<br>" + "Manual total: $" + manualCat.getExpense()
+                    update = ("<html>" + "Amount added to " + SetupFrame.manualName + ": $"
+                            + amountToAdd
+                            + "<br>" + SetupFrame.manualName
+                            + " total: $" + manualCat.getExpense()
                             + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
                     updateLabel.setText(update);
                     amount.setText("");
                 }
             }
             else;
+
             if (TrackingData.td.getTotalExpense() > Category.incomeCat.getIncome()){
                 warning = "Warning: you have exceeded your income of $" + Category.incomeCat.getIncome();
                 warningLabel.setForeground(Color.red);
@@ -275,6 +278,7 @@ public class AddExpenseFrame extends JFrame {
         @Override
         public void itemStateChanged(ItemEvent e) {
             JComboBox cb = (JComboBox) e.getSource();
+            System.out.println("Manual category name: " + SetupFrame.manualName);
             if (cb.getSelectedItem().equals("Rent/Mortgage")) {
                 addTo = "RENT";
             }
@@ -296,7 +300,7 @@ public class AddExpenseFrame extends JFrame {
             else if (cb.getSelectedItem().equals("Fuel")) {
                 addTo = "FUEL";
             }
-            else if (cb.getSelectedItem().equals("Manual")) {
+            else if (cb.getSelectedItem().equals("Manual") || cb.getSelectedItem().equals(SetupFrame.manualName)) {
                 addTo = "MANUAL";
             }
             else;

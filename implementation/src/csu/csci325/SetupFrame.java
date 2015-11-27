@@ -4,8 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
 import static csu.csci325.Category.incomeCat;
+import static csu.csci325.Category.manualCat;
 
 public class SetupFrame extends JFrame{
     private JLabel title;
@@ -25,6 +28,8 @@ public class SetupFrame extends JFrame{
     private JLabel warning;
     private JLabel update;
 
+    public static String manualName;
+
 
     public CategoryList catList = new CategoryList();
     //static JPanel setupPane = new JPanel();
@@ -42,7 +47,7 @@ public class SetupFrame extends JFrame{
 
         setupFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        setupFrame.setPreferredSize(new Dimension(400, 500));
+        setupFrame.setPreferredSize(new Dimension(400, 600));
         SetupPanel setupPanel = new SetupPanel();
         setupFrame.getContentPane().add(setupPanel);
 
@@ -84,7 +89,6 @@ public class SetupFrame extends JFrame{
             warning = new JLabel();
             update = new JLabel();
 
-
             setup = new JButton("Setup");
             addExpense = new JButton("Add Expense");
             tracking = new JButton("Tracking");
@@ -118,10 +122,10 @@ public class SetupFrame extends JFrame{
             selectPane.add(credit);
             selectPane.add(fuel);
             selectPane.add(manual);
-            //MOVE DOWN TO ACTION LISTENER
-            if (manual.isSelected()) {
-                selectPane.add(manualcat);
-            }
+            selectPane.add(manualcat);
+            manualcat.setVisible(true);
+
+
             selectPane.add(submit1);
             selectPane.add(warning);
             selectPane.add(update);
@@ -216,20 +220,6 @@ public class SetupFrame extends JFrame{
         @Override
         public void actionPerformed(ActionEvent e) {
 
-            /*if (e.getSource() == addExpense){
-                new AddExpenseFrame();
-                new addExpenseFrame().setVisible(true);
-                //this.dispose();
-            }
-            else if (e.getSource() == tracking){
-                new trackingFrame().setVisible(true);
-                //this.dispose();
-            }
-            else if (e.getSource() == userProfile){
-                new userProfileFrame().setVisible(true);
-                //this.dispose();
-            }
-            else;*/
         }
     }
 
@@ -260,40 +250,37 @@ public class SetupFrame extends JFrame{
                     incomeCat.mIncome = income;
                 }else;
 
-
-                System.out.println("Monthly Income: $" + incomeCat.mIncome);
                 if(rent.isSelected()){
-                    //Category rentMortgageCat = new Category();
                     catList.addString("Rent/Mortgage");
                 }
                 if (food.isSelected()){
-                    //Category foodGroceryCat = new Category();
                     catList.addString("Food/Grocery");
                 }
                 if (entertain.isSelected()){
-                    //Category entertainmentCat = new Category();
                     catList.addString("Entertainment");
                 }
                 if (loans.isSelected()){
-                    //Category loansCat = new Category();
                     catList.addString("Loans");
                 }
                 if (savings.isSelected()) {
-                    //Category savingsCat = new Category();
                     catList.addString("Savings");
                 }
                 if (credit.isSelected()){
-                    //Category creditCardCat = new Category();
                     catList.addString("Credit");
                 }
                 if (fuel.isSelected()){
-                    //Category fuelCat = new Category();
                     catList.addString("Fuel");
                 }
                 if (manual.isSelected()){
-                    //Category manualCategory = new Category();
-                    catList.addString("Manual");
+                    if (!manualcat.getText().isEmpty()){
+                        manualName = manualcat.getText();
+                        catList.addString(manualName);
+                    }
+                    else catList.addString("Manual");
                 }
+
+                AddExpenseFrame.categoryArray = catList.getAsArray();
+                TrackingData.activeCategories = catList.categoryList;
 
                 update.setText("<html>" + "Your income is: $" + Category.incomeCat.getIncome() +
                         "<br>" + "Categories added successfully!" +
@@ -303,8 +290,7 @@ public class SetupFrame extends JFrame{
                 monthlyIncome.setText("");
             }
             //catList.ListToString();
-            AddExpenseFrame.categoryArray = catList.getAsArray();
-            TrackingData.activeCategories = catList.categoryList;
+
 
         }
     }
