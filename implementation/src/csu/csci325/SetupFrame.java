@@ -22,6 +22,9 @@ public class SetupFrame extends JFrame{
     public JTextField manualcat;
     public JButton submit1;
 
+    private JLabel warning;
+    private JLabel update;
+
 
     public CategoryList catList = new CategoryList();
     //static JPanel setupPane = new JPanel();
@@ -39,7 +42,7 @@ public class SetupFrame extends JFrame{
 
         setupFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        //setupFrame.setPreferredSize(new Dimension(400, 300));
+        setupFrame.setPreferredSize(new Dimension(400, 500));
         SetupPanel setupPanel = new SetupPanel();
         setupFrame.getContentPane().add(setupPanel);
 
@@ -78,6 +81,8 @@ public class SetupFrame extends JFrame{
             manual.addActionListener(checkCategories);
             submit1.addActionListener(checkCategories);
 
+            warning = new JLabel();
+            update = new JLabel();
 
 
             setup = new JButton("Setup");
@@ -93,17 +98,11 @@ public class SetupFrame extends JFrame{
 
 
             //PANELS
-
-        /*JPanel titlePane = new JPanel();
-        titlePane.setLayout(new BoxLayout(titlePane, BoxLayout.Y_AXIS));
-        titlePane.add(Box.createRigidArea(new Dimension(50, 15)));
-        titlePane.add(title);
-        titlePane.add(Box.createRigidArea(new Dimension(0, 50)));*/
-
             JPanel incomePane = new JPanel();
             incomePane.setLayout(new BoxLayout(incomePane, BoxLayout.Y_AXIS));
             //incomePane.add(Box.createRigidArea(new Dimension(0, 30)));
-            JLabel monthlyLabel = new JLabel("Enter your Monthly Income: ");
+            JLabel monthlyLabel = new JLabel("<html>Enter your Monthly Income in decimal format" +
+                    "<br>" + "without '$' or other special characters.</html>");
             incomePane.add(monthlyLabel);
             incomePane.add(monthlyIncome);
 
@@ -124,16 +123,8 @@ public class SetupFrame extends JFrame{
                 selectPane.add(manualcat);
             }
             selectPane.add(submit1);
-
-            /*JPanel priorityPane = new JPanel();
-            priorityPane.setLayout(new BoxLayout(priorityPane, BoxLayout.LINE_AXIS));
-            JLabel priorityLabel = new JLabel("Select your top categories: ");
-            priorityPane.add(priorityLabel);
-            priorityPane.add(setPriority);
-            priorityPane.add(Box.createHorizontalStrut(100));
-            priorityPane.add(Box.createVerticalBox());
-            priorityPane.add(submit2);*/
-
+            selectPane.add(warning);
+            selectPane.add(update);
 
             JPanel buttonsPane = new JPanel();
             buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.LINE_AXIS));
@@ -250,45 +241,71 @@ public class SetupFrame extends JFrame{
 
             if (e.getSource() == submit1) {
                 //SHOW ERROR MESSAGE IF TEXT BOX IS EMPTY
-                income = Double.parseDouble(monthlyIncome.getText());
-                incomeCat.mIncome = income;
+
+                if (monthlyIncome.getText().isEmpty()){
+                    warning.setForeground(Color.red);
+                    warning.setText("Please enter an income!");
+                }
+                else if (monthlyIncome != null){
+                    try {
+                        Double.parseDouble(monthlyIncome.getText());
+                        //System.out.println("Parse successful.");
+                    }
+                    catch(NumberFormatException nfe) {
+                        //System.out.println("Parse unsuccessful.");
+                        warning.setForeground(Color.red);
+                        warning.setText("Input a decimal number without special characters.");
+                    }
+                    income = Double.parseDouble(monthlyIncome.getText());
+                    incomeCat.mIncome = income;
+                }else;
+
+
                 System.out.println("Monthly Income: $" + incomeCat.mIncome);
                 if(rent.isSelected()){
-                    Category rentMortgageCat = new Category();
+                    //Category rentMortgageCat = new Category();
                     catList.addString("Rent/Mortgage");
                 }
                 if (food.isSelected()){
-                    Category foodGroceryCat = new Category();
+                    //Category foodGroceryCat = new Category();
                     catList.addString("Food/Grocery");
                 }
                 if (entertain.isSelected()){
-                    Category entertainmentCat = new Category();
+                    //Category entertainmentCat = new Category();
                     catList.addString("Entertainment");
                 }
                 if (loans.isSelected()){
-                    Category loansCat = new Category();
+                    //Category loansCat = new Category();
                     catList.addString("Loans");
                 }
                 if (savings.isSelected()) {
-                    Category savingsCat = new Category();
+                    //Category savingsCat = new Category();
                     catList.addString("Savings");
                 }
                 if (credit.isSelected()){
-                    Category creditCardCat = new Category();
+                    //Category creditCardCat = new Category();
                     catList.addString("Credit");
                 }
                 if (fuel.isSelected()){
-                    Category fuelCat = new Category();
+                    //Category fuelCat = new Category();
                     catList.addString("Fuel");
                 }
                 if (manual.isSelected()){
-                    Category manualCategory = new Category();
+                    //Category manualCategory = new Category();
                     catList.addString("Manual");
                 }
+
+                update.setText("<html>" + "Your income is: $" + Category.incomeCat.getIncome() +
+                        "<br>" + "Categories added successfully!" +
+                        "<br>" + "Exit out of this window to add and" +
+                        "<br>" + "track expenses.</html>");
+
+                monthlyIncome.setText("");
             }
             //catList.ListToString();
             AddExpenseFrame.categoryArray = catList.getAsArray();
             TrackingData.activeCategories = catList.categoryList;
+
         }
     }
 

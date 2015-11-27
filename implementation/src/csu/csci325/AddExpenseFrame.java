@@ -29,6 +29,8 @@ public class AddExpenseFrame extends JFrame {
     private JButton userProfile;
 
     //static JPanel addExpensePane = new JPanel();
+    private JLabel warningLabel = new JLabel();
+    private JLabel updateLabel = new JLabel();
 
     public String addTo = "";
 
@@ -37,7 +39,7 @@ public class AddExpenseFrame extends JFrame {
 
         addExpenseFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        addExpenseFrame.setPreferredSize(new Dimension(400, 300));
+        addExpenseFrame.setPreferredSize(new Dimension(400, 375));
         AddExpensePanel addExpensePanel = new AddExpensePanel();
         addExpenseFrame.getContentPane().add(addExpensePanel);
 
@@ -65,7 +67,11 @@ public class AddExpenseFrame extends JFrame {
             SubmitListener sl = new SubmitListener();
             submit.addActionListener(sl);
 
-            setup = new JButton("Setup");
+            warningLabel = new JLabel("");
+            updateLabel = new JLabel("");
+
+
+            /*setup = new JButton("Setup");
             addExpense = new JButton("Add Expense");
             tracking = new JButton("Tracking");
             userProfile = new JButton("User Profile");
@@ -74,7 +80,7 @@ public class AddExpenseFrame extends JFrame {
             setup.addActionListener(listener);
             addExpense.addActionListener(listener);
             tracking.addActionListener(listener);
-            userProfile.addActionListener(listener);
+            userProfile.addActionListener(listener);*/
 
             //PANELS
             JPanel categoryPane = new JPanel();
@@ -87,15 +93,16 @@ public class AddExpenseFrame extends JFrame {
             addAmountPane.add(amountLabel);
             addAmountPane.add(amount);
             addAmountPane.add(submit);
+            addAmountPane.add(warningLabel);
+            addAmountPane.add(updateLabel);
 
-            JPanel buttonsPane = new JPanel();
+            /*JPanel buttonsPane = new JPanel();
             buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.LINE_AXIS));
             buttonsPane.add(Box.createHorizontalGlue());
             buttonsPane.add(setup);
             buttonsPane.add(addExpense);
             buttonsPane.add(tracking);
-            buttonsPane.add(userProfile);
-            //buttonsPane.setVisible(true);
+            buttonsPane.add(userProfile);*/
 
             JPanel addExpensePane = new JPanel();
             addExpensePane.setLayout(new GridBagLayout());
@@ -177,52 +184,90 @@ public class AddExpenseFrame extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             double amountToAdd;
+            String warning;
+            String update;
             if(e.getSource() == submit) {
-                //NEED TO ADD EXCEPTION/WARNING IF amountToAdd IS GREATER THAN INCOME
                 amountToAdd = Double.parseDouble(amount.getText());
                 System.out.println("Category: " + addTo);
                 if (Objects.equals(addTo, "RENT")) {
                     rentMortgageCat.mExpense += amountToAdd;
-                    System.out.println("After adding to Rent: " + rentMortgageCat.getExpense());
+                    //System.out.println("After adding to Rent: " + rentMortgageCat.getExpense());
+                    update = ("<html>" + "Amount added to Rent: $" + amountToAdd
+                            + "<br>" + "Rent total: $" + rentMortgageCat.getExpense()
+                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    updateLabel.setText(update);
                     amount.setText("");
                     }
                 else if (addTo.equals("FOOD")) {
                     foodGroceryCat.mExpense += amountToAdd;
-                    System.out.println("After adding to Food: " + foodGroceryCat.getExpense());
+                    //System.out.println("After adding to Food: " + foodGroceryCat.getExpense());
+                    update = ("<html>" + "Amount added to Food/Grocery: $" + amountToAdd
+                            + "<br>" + "Food/Grocery total: $" + foodGroceryCat.getExpense()
+                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    updateLabel.setText(update);
                     amount.setText("");
                     }
                 else if (addTo.equals("ENTERTAIN")) {
                     Category.entertainmentCat.mExpense += amountToAdd;
-                    System.out.println("After adding to Entertainment " + entertainmentCat.getExpense());
+                    //System.out.println("After adding to Entertainment " + entertainmentCat.getExpense());
+                    update = ("<html>" + "Amount added to Entertainment: $" + amountToAdd
+                            + "<br>" + "Entertainment total: $" + entertainmentCat.getExpense()
+                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    updateLabel.setText(update);
                     amount.setText("");
                 }
                 else if (addTo.equals("LOANS")) {
                     Category.loansCat.mExpense += amountToAdd;
-                    System.out.println("After adding to Loans: " + loansCat.getExpense());
+                    //System.out.println("After adding to Loans: " + loansCat.getExpense());
+                    update = ("<html>" + "Amount added to Loans: $" + amountToAdd
+                            + "<br>" + "Loans total: $" + loansCat.getExpense()
+                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    updateLabel.setText(update);
                     amount.setText("");
                 }
                 else if (addTo.equals("SAVINGS")) {
                     Category.savingsCat.mExpense += amountToAdd;
-                    System.out.println("After adding to Savings: " + savingsCat.getExpense());
+                    //System.out.println("After adding to Savings: " + savingsCat.getExpense());
+                    update = ("<html>" + "Amount added to Savings: $" + amountToAdd
+                            + "<br>" + "Savings total: $" + savingsCat.getExpense()
+                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    updateLabel.setText(update);
                     amount.setText("");
                 }
                 else if (addTo.equals("CREDIT")) {
                     Category.creditCat.mExpense += amountToAdd;
-                    System.out.println("After adding to Credit: " + creditCat.getExpense());
+                    //System.out.println("After adding to Credit: " + creditCat.getExpense());
+                    update = ("<html>" + "Amount added to Credit: $" + amountToAdd
+                            + "<br>" + "Credit total: $" + creditCat.getExpense()
+                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    updateLabel.setText(update);
                     amount.setText("");
                 }
                 else if (addTo.equals("FUEL")) {
                     Category.fuelCat.mExpense += amountToAdd;
-                    System.out.println("After adding to Fuel: " + fuelCat.getExpense());
+                    //System.out.println("After adding to Fuel: " + fuelCat.getExpense());
+                    update = ("<html>" + "Amount added to Fuel: $" + amountToAdd
+                            + "<br>" + "Fuel total: $" + fuelCat.getExpense()
+                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    updateLabel.setText(update);
                     amount.setText("");
                 }
                 else if (addTo.equals("MANUAL")) {
                     Category.manualCat.mExpense += amountToAdd;
-                    System.out.println("After adding to Manual: " + manualCat.getExpense());
+                    //System.out.println("After adding to Manual: " + manualCat.getExpense());
+                    update = ("<html>" + "Amount added to Manual: $" + amountToAdd
+                            + "<br>" + "Manual total: $" + manualCat.getExpense()
+                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    updateLabel.setText(update);
                     amount.setText("");
                 }
             }
             else;
+            if (TrackingData.td.getTotalExpense() > Category.incomeCat.getIncome()){
+                warning = "Warning: you have exceeded your income of $" + Category.incomeCat.getIncome();
+                warningLabel.setForeground(Color.red);
+                warningLabel.setText(warning);
+            }
         }
     }
 

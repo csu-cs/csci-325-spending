@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 public class TrackingFrame extends JFrame {
 
@@ -19,8 +18,10 @@ public class TrackingFrame extends JFrame {
     private JPanel listChart = new JPanel();
     private JPanel blankChart = new JPanel();
 
+    private JLabel blankLabel = new JLabel();
 
-    private JTextArea list = new JTextArea(10,1);
+
+    private JTextArea list = new JTextArea();
 
     private JButton setup;
     private JButton addExpense;
@@ -52,56 +53,58 @@ public class TrackingFrame extends JFrame {
             exVIncomeButton = new JButton("Expense Vs. Income View");
             listButton = new JButton("List View");
 
-            setup = new JButton("Setup");
+            /*setup = new JButton("Setup");
             addExpense = new JButton("Add Expense");
             tracking = new JButton("Tracking");
-            userProfile = new JButton("User Profile");
+            userProfile = new JButton("User Profile");*/
 
             pieChart = new JPanel();
             exVIncomeChart = new JPanel();
             listChart = new JPanel();
             blankChart = new JPanel();
+            blankLabel = new JLabel("Select a button above to view the chart.");
             list = new JTextArea(10,1);
 
-            ButtonListener listener = new ButtonListener();
+            /*ButtonListener listener = new ButtonListener();
             setup.addActionListener(listener);
             addExpense.addActionListener(listener);
             tracking.addActionListener(listener);
-            userProfile.addActionListener(listener);
+            userProfile.addActionListener(listener);*/
 
             TrackingButtonListener trackingListener = new TrackingButtonListener();
             pieButton.addActionListener(trackingListener);
             exVIncomeButton.addActionListener(trackingListener);
             listButton.addActionListener(trackingListener);
 
-            //PANELS
+            //PANELS//
             JPanel viewTypePane = new JPanel();
             viewTypePane.setLayout(new BoxLayout(viewTypePane, BoxLayout.X_AXIS));
             viewTypePane.add(pieButton);
             viewTypePane.add(exVIncomeButton);
             viewTypePane.add(listButton);
 
+            //BLANK CHART
+            blankChart.add(blankLabel);
+
             //PIE CHART
             pieChart.add(TrackingData.td.createPieChart());
 
             //LIST CHART
-            //ArrayList lc;
-            //lc = TrackingData.td.toList();
-            //list = new JTextArea(lc.toString());
             list = new JTextArea(TrackingData.td.toTextField());
             list.getLineWrap();
+            list.setFont(new Font("Arial", Font.BOLD, 14));
             listChart.add(list);
 
             //PROGRESS BAR(Expense vs. Income)
             exVIncomeChart.add(TrackingData.td.createProgressBar());
 
-            JPanel buttonsPane = new JPanel();
+            /*JPanel buttonsPane = new JPanel();
             buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.LINE_AXIS));
             buttonsPane.add(Box.createHorizontalGlue());
             buttonsPane.add(setup);
             buttonsPane.add(addExpense);
             buttonsPane.add(tracking);
-            buttonsPane.add(userProfile);
+            buttonsPane.add(userProfile);*/
 
             JPanel trackingPane = new JPanel();
             trackingPane.setLayout(new GridBagLayout());
