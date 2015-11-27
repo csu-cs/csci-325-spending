@@ -12,6 +12,8 @@ import java.util.ArrayList;
  * @author Xiaoxiao Li
  *
  */
+
+//Code from http://stackoverflow.com/questions/4126029/java-color-code-convert-to-color-name
 public class ColorUtils {
     //Only modification
     public static ColorUtils colorUtils = new ColorUtils();
