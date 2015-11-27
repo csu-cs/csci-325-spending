@@ -27,13 +27,15 @@ public class TrackingFrame extends JFrame {
     private JButton tracking;
     private JButton userProfile;
 
+    //static JPanel trackingPane = new JPanel();
+
 
     public TrackingFrame() {
         JFrame TrackingFrame = new JFrame("Tracking Panel");
 
         TrackingFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        //addExpenseFrame.setPreferredSize(new Dimension(400, 300));
+        TrackingFrame.setPreferredSize(new Dimension(400, 400));
         TrackingPanel trackingPanel = new TrackingPanel();
         TrackingFrame.getContentPane().add(trackingPanel);
 
@@ -83,9 +85,11 @@ public class TrackingFrame extends JFrame {
             pieChart.add(TrackingData.td.createPieChart());
 
             //LIST CHART
-            ArrayList lc;
-            lc = TrackingData.td.toList();
-            list = new JTextArea(lc.toString());
+            //ArrayList lc;
+            //lc = TrackingData.td.toList();
+            //list = new JTextArea(lc.toString());
+            list = new JTextArea(TrackingData.td.toTextField());
+            list.getLineWrap();
             listChart.add(list);
 
             //PROGRESS BAR(Expense vs. Income)
@@ -156,7 +160,7 @@ public class TrackingFrame extends JFrame {
             listChart.setVisible(false);
 
 
-            c.gridwidth = 1;
+            /*c.gridwidth = 1;
             c.weightx = 1.0;
             c.weighty = 1.0;
             c.gridx = 0;
@@ -173,7 +177,7 @@ public class TrackingFrame extends JFrame {
             c.gridwidth = 1;
             c.gridx = 3;
             c.gridy = 7;
-            trackingPane.add(userProfile, c);
+            trackingPane.add(userProfile, c);*/
 
             add(trackingPane);
         }

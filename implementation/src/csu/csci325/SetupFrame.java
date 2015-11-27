@@ -7,13 +7,9 @@ import java.awt.event.ActionListener;
 
 import static csu.csci325.Category.incomeCat;
 
-/**
- * Created by N'dia on 11/11/2015.
- */
 public class SetupFrame extends JFrame{
     private JLabel title;
     public JTextField monthlyIncome;
-    //Category incomeCat = new Category();
 
     public JCheckBox rent;
     public JCheckBox food;
@@ -28,6 +24,7 @@ public class SetupFrame extends JFrame{
 
 
     public CategoryList catList = new CategoryList();
+    //static JPanel setupPane = new JPanel();
 
 
     private JButton setup;
@@ -49,8 +46,9 @@ public class SetupFrame extends JFrame{
         setupFrame.pack();
         setupFrame.setVisible(true);
     }
+
     public class SetupPanel extends JPanel {
-        public SetupPanel() {
+        public SetupPanel(){
             title = new JLabel("Setup");
             title.setFont(new Font("Arial", Font.BOLD, 28));
 
@@ -108,12 +106,11 @@ public class SetupFrame extends JFrame{
             JLabel monthlyLabel = new JLabel("Enter your Monthly Income: ");
             incomePane.add(monthlyLabel);
             incomePane.add(monthlyIncome);
-            //incomePane.add(Box.createRigidArea(new Dimension(0, 50)));
 
-            JPanel selectPane = new JPanel();
+            final JPanel selectPane = new JPanel();
             JLabel catLabel = new JLabel("Select the categories you want to track: ");
             selectPane.add(catLabel);
-            //selectPane.setLayout(new GridLayout(2, 4));
+            selectPane.setLayout(new BoxLayout(selectPane, BoxLayout.Y_AXIS));
             selectPane.add(rent);
             selectPane.add(food);
             selectPane.add(entertain);
@@ -122,6 +119,7 @@ public class SetupFrame extends JFrame{
             selectPane.add(credit);
             selectPane.add(fuel);
             selectPane.add(manual);
+            //MOVE DOWN TO ACTION LISTENER
             if (manual.isSelected()) {
                 selectPane.add(manualcat);
             }
@@ -199,7 +197,7 @@ public class SetupFrame extends JFrame{
             c.gridy = 4;
             setupPane.add(priorityPane, c);*/
 
-            c.gridwidth = 1;
+            /*c.gridwidth = 1;
             c.weightx = 1.0;
             c.weighty = 1.0;
             c.gridx = 0;
@@ -216,7 +214,7 @@ public class SetupFrame extends JFrame{
             c.gridwidth = 1;
             c.gridx = 3;
             c.gridy = 4;
-            setupPane.add(userProfile, c);
+            setupPane.add(userProfile, c);*/
 
             add(setupPane);
         }

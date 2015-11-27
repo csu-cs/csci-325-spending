@@ -28,6 +28,8 @@ public class AddExpenseFrame extends JFrame {
     private JButton tracking;
     private JButton userProfile;
 
+    //static JPanel addExpensePane = new JPanel();
+
     public String addTo = "";
 
     public AddExpenseFrame() {
@@ -35,7 +37,7 @@ public class AddExpenseFrame extends JFrame {
 
         addExpenseFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        //addExpenseFrame.setPreferredSize(new Dimension(400, 300));
+        addExpenseFrame.setPreferredSize(new Dimension(400, 300));
         AddExpensePanel addExpensePanel = new AddExpensePanel();
         addExpenseFrame.getContentPane().add(addExpensePanel);
 
@@ -141,7 +143,7 @@ public class AddExpenseFrame extends JFrame {
             c.gridy = 3;
             addExpensePane.add(addAmountPane, c);
 
-            c.gridwidth = 1;
+            /*c.gridwidth = 1;
             c.weightx = 1.0;
             c.weighty = 1.0;
             c.gridx = 0;
@@ -158,7 +160,7 @@ public class AddExpenseFrame extends JFrame {
             c.gridwidth = 1;
             c.gridx = 3;
             c.gridy = 4;
-            addExpensePane.add(userProfile, c);
+            addExpensePane.add(userProfile, c);*/
 
             add(addExpensePane);
         }

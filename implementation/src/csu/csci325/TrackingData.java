@@ -54,15 +54,15 @@ public class TrackingData {
 
         if (rentMortgageCat.getExpense() != 0) {
             percentages.add((rentMortgageCat.getExpense() /total) * 100);
-            System.out.println("Rent percentage: " + (rentMortgageCat.getExpense()/total) * 100);
+            //System.out.println("Rent percentage: " + (rentMortgageCat.getExpense()/total) * 100);
         }
         if (foodGroceryCat.getExpense() != 0) {
             percentages.add((foodGroceryCat.getExpense()/total) * 100);
-            System.out.println("Food percentage: " + (foodGroceryCat.getExpense() / total) * 100);
+            //System.out.println("Food percentage: " + (foodGroceryCat.getExpense() / total) * 100);
         }
         if (entertainmentCat.getExpense() != 0) {
             percentages.add((entertainmentCat.getExpense()/total) * 100);
-            System.out.println("Entertainment percentage: " + (entertainmentCat.getExpense() / total) * 100);
+            //System.out.println("Entertainment percentage: " + (entertainmentCat.getExpense() / total) * 100);
         }
         if (loansCat.getExpense() != 0) {
             percentages.add((loansCat.getExpense()/total) * 100);
@@ -112,6 +112,14 @@ public class TrackingData {
             listValues.add("Manual: $" + manualCat.getExpense());
         }
         return listValues;
+    }
+
+    String toTextField() {
+        String str = "";
+        for (int i = 0; i < toList().size(); i++){
+            str += ("-" + toList().get(i) + "\n");
+        }
+        return str;
     }
 
     PieChartFinal createPieChart() {

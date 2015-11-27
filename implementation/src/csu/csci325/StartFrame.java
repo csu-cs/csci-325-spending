@@ -13,12 +13,15 @@ public class StartFrame extends JFrame {
     private JButton tracking;
     private JButton userProfile;
 
-    //public static void main (String[] args){
+    private JPanel blankChart = new JPanel();
+    //public aSetupPanel asp = new aSetupPanel();
+    //public static aAddExpensePanel aap = new aAddExpensePanel();
+
     public StartFrame() {
         final JFrame startFrame = new JFrame ("Start Panel");
         startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        startFrame.setPreferredSize(new Dimension(400, 300));
+        startFrame.setPreferredSize(new Dimension(400, 400));
         StartPanel startPanel = new StartPanel();
         startFrame.getContentPane().add(startPanel);
 
@@ -44,27 +47,9 @@ public class StartFrame extends JFrame {
             tracking.addActionListener(listener);
             userProfile.addActionListener(listener); //(new userProfileListener())
 
-
-            /*JPanel welcomePane = new JPanel();
-            welcomePane.setLayout(new BoxLayout(welcomePane, BoxLayout.PAGE_AXIS));
-            welcomePane.add(Box.createRigidArea(new Dimension(0, 50)));
-            welcomePane.add(welcome);
-            welcomePane.add(Box.createRigidArea(new Dimension(0, 100)));
-            //welcomePane.setVisible(true);
-
-            JPanel buttonsPane = new JPanel();
-            buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.LINE_AXIS));
-            buttonsPane.add(Box.createHorizontalGlue());
-            buttonsPane.add(setup);
-            buttonsPane.add(addExpense);
-            buttonsPane.add(tracking);
-            buttonsPane.add(userProfile);
-            buttonsPane.setVisible(true);
-
-            //Container contentPane = new Container();
-            //Container contentPane = getContentPane();
-            add(welcomePane, BorderLayout.CENTER);
-            add(buttonsPane, BorderLayout.SOUTH);*/
+            //asp = new aSetupPanel();
+            //aap = new aAddExpensePanel();
+            blankChart = new JPanel();
 
             JPanel welcomePane = new JPanel();
             welcomePane.setLayout(new GridBagLayout());
@@ -100,23 +85,38 @@ public class StartFrame extends JFrame {
             c0.gridy = 2;
             welcomePane.add(subtitle, c0);
 
+            c0.gridwidth = GridBagConstraints.REMAINDER;
+            c0.gridheight = 10;
+            c0.ipady = 60;
+            c0.weightx = 0.0;
+            c0.weighty = 0.0;
+            c0.gridx = 0;
+            c0.gridy = 3;
+            welcomePane.add(blankChart, c0);
+
+            //welcomePane.add(asp, c0);
+            //asp.setVisible(false);
+            //welcomePane.add(aap, c0);
+            //aap.setVisible(false);
+            //aap.categoryBox.setEnabled(false);
+
             c0.gridwidth = 1;
             c0.weightx = 1.0;
             c0.weighty = 1.0;
             c0.gridx = 0;
-            c0.gridy = 3;
+            c0.gridy = 13;
             welcomePane.add(setup, c0);
             c0.gridwidth = 1;
             c0.gridx = 1;
-            c0.gridy = 3;
+            c0.gridy = 13;
             welcomePane.add(addExpense, c0);
             c0.gridwidth = 1;
             c0.gridx = 2;
-            c0.gridy = 3;
+            c0.gridy = 13;
             welcomePane.add(tracking,c0);
             c0.gridwidth = 1;
             c0.gridx = 3;
-            c0.gridy = 3;
+            c0.gridy = 13;
             welcomePane.add(userProfile, c0);
 
             add(welcomePane);
@@ -127,23 +127,23 @@ public class StartFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == setup) {
                 new SetupFrame();
-                //dispose();
+                //blankChart.setVisible(false);
+                //asp.setVisible(true);
+                //aap.setVisible(false);
             }
             else if (e.getSource() == addExpense){
-                //if ()
                 new AddExpenseFrame();
-                dispose();
-                //new addExpenseFrame().setVisible(true);
-                //this.dispose();
+                //blankChart.setVisible(false);
+                //asp.setVisible(false);
+                //aap.categoryBox.setEnabled(true);
+                //aap.setVisible(true);
             }
             else if (e.getSource() == tracking){
                 new TrackingFrame();
-                //new trackingFrame().setVisible(true);
-                //this.dispose();
+
             }
             else if (e.getSource() == userProfile){
                 new UserProfileFrame();
-                //this.dispose();
             }
             else;
         }
