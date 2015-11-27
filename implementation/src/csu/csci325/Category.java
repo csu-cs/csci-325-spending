@@ -7,6 +7,8 @@ public class Category {
     public double mExpense;
     public double mIncome;
 
+    public static Category incomeCat = new Category();
+
     public static Category rentMortgageCat = new Category();
     public static Category foodGroceryCat = new Category();
     public static Category entertainmentCat = new Category();

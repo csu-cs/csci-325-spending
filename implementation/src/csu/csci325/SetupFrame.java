@@ -5,13 +5,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static csu.csci325.Category.incomeCat;
+
 /**
  * Created by N'dia on 11/11/2015.
  */
 public class SetupFrame extends JFrame{
     private JLabel title;
     public JTextField monthlyIncome;
-    Category incomeCat = new Category();
+    //Category incomeCat = new Category();
 
     public JCheckBox rent;
     public JCheckBox food;
@@ -252,7 +254,7 @@ public class SetupFrame extends JFrame{
                 //SHOW ERROR MESSAGE IF TEXT BOX IS EMPTY
                 income = Double.parseDouble(monthlyIncome.getText());
                 incomeCat.mIncome = income;
-                System.out.println("Monthly Income:" + incomeCat.mIncome);
+                System.out.println("Monthly Income: $" + incomeCat.mIncome);
                 if(rent.isSelected()){
                     Category rentMortgageCat = new Category();
                     catList.addString("Rent/Mortgage");
@@ -288,6 +290,7 @@ public class SetupFrame extends JFrame{
             }
             //catList.ListToString();
             AddExpenseFrame.categoryArray = catList.getAsArray();
+            TrackingData.activeCategories = catList.categoryList;
         }
     }
 

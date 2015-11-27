@@ -19,6 +19,7 @@ public class TrackingFrame extends JFrame {
     private JPanel listChart = new JPanel();
     private JPanel blankChart = new JPanel();
 
+
     private JTextArea list = new JTextArea(10,1);
 
     private JButton setup;
@@ -79,43 +80,18 @@ public class TrackingFrame extends JFrame {
             viewTypePane.add(listButton);
 
             //PIE CHART
-            System.out.println("Total Expenses: $" + TrackingData.td.getTotalExpense());
-
-            ArrayList values;
-            values = TrackingData.td.toPieChart();
-
-            /*values.add(new Double(10));
-            values.add(new Double(20));
-            values.add(new Double(30));
-            values.add(new Double(15));
-            values.add(new Double(15));*/
-
-            ArrayList<Color> colors = new ArrayList<Color>();
-            colors.add(Color.gray);
-            colors.add(Color.green);
-            colors.add(Color.blue);
-            colors.add(Color.pink);
-            colors.add(Color.yellow);
-            colors.add(Color.red);
-            colors.add(Color.cyan);
-            colors.add(Color.black);
-            colors.add(Color.orange);
-
-            PieChartFinal pc = new PieChartFinal(values, colors);
-            pc.setSize(150, 150);
-            pieChart.add(pc);
+            pieChart.add(TrackingData.td.createPieChart());
 
             //LIST CHART
             ArrayList lc;
             lc = TrackingData.td.toList();
-            list = (JTextArea) lc.listIterator();
+            list = new JTextArea(lc.toString());
             listChart.add(list);
 
-            //JPanel exVIncomeChart = new JPanel();
-            //JPanel listChart = new JPanel();
-            //JPanel blankChart = new JPanel();
-            JPanel buttonsPane = new JPanel();
+            //PROGRESS BAR(Expense vs. Income)
+            exVIncomeChart.add(TrackingData.td.createProgressBar());
 
+            JPanel buttonsPane = new JPanel();
             buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.LINE_AXIS));
             buttonsPane.add(Box.createHorizontalGlue());
             buttonsPane.add(setup);
@@ -218,7 +194,6 @@ public class TrackingFrame extends JFrame {
                 exVIncomeChart.setVisible(false);
                 listChart.setVisible(false);
                 blankChart.setVisible(false);
-
             }
             if (e.getSource() == exVIncomeButton) {
                 pieChart.setVisible(false);
