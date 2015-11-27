@@ -150,7 +150,7 @@ public class AddExpenseFrame extends JFrame {
                     warningLabel.setForeground(Color.red);
                     warningLabel.setText("Please enter an amount!");
                 }
-                else if (amount != null) {
+                else if (!amount.getText().isEmpty()) {
                     try {
                         Double.parseDouble(amount.getText());
                         //System.out.println("Parse successful.");
@@ -240,7 +240,6 @@ public class AddExpenseFrame extends JFrame {
                     amount.setText("");
                 }
             }
-            else;
 
             if (TrackingData.td.getTotalExpense() > Category.incomeCat.getIncome()){
                 warning = "Warning: you have exceeded your income of $" + Category.incomeCat.getIncome();
@@ -284,7 +283,6 @@ public class AddExpenseFrame extends JFrame {
             else if (cb.getSelectedItem().equals("Manual") || cb.getSelectedItem().equals(SetupFrame.manualName)) {
                 addTo = "MANUAL";
             }
-            else;
         }
     }
 }

@@ -210,7 +210,7 @@ public class SetupFrame extends JFrame{
                     warning.setForeground(Color.red);
                     warning.setText("Please enter an income!");
                 }
-                else if (monthlyIncome != null){
+                else if (!monthlyIncome.getText().isEmpty()){
                     try {
                         Double.parseDouble(monthlyIncome.getText());
                         //System.out.println("Parse successful.");
@@ -222,7 +222,7 @@ public class SetupFrame extends JFrame{
                     }
                     income = Double.parseDouble(monthlyIncome.getText());
                     incomeCat.mIncome = income;
-                }else;
+                }
 
                 if(rent.isSelected()){
                     catList.addString("Rent/Mortgage");

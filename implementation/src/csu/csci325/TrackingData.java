@@ -49,7 +49,7 @@ public class TrackingData {
     }
 
     ArrayList toPieChart() {
-        ArrayList<Double> percentages = new ArrayList<Double>();
+        ArrayList<Double> percentages = new ArrayList<>();
 
         double total = getTotalExpense();
 
@@ -86,7 +86,7 @@ public class TrackingData {
     }
 
     ArrayList toList() {
-        ArrayList<String> listValues = new ArrayList<String>();
+        ArrayList<String> listValues = new ArrayList<>();
 
         if (rentMortgageCat.getExpense() != 0 && activeCategories.contains("Rent/Mortgage")) {
             listValues.add("Rent/Mortgage: $" + rentMortgageCat.getExpense());
@@ -131,7 +131,7 @@ public class TrackingData {
     String pieChartData() {
         String pcd = "";
         String namePercentage = "";
-        String colorName = "";
+        String colorName;
         double total = getTotalExpense();
 
         //DOES NOT WORK IF TWO PERCENTAGES ARE THE EXACT SAME
@@ -177,7 +177,7 @@ public class TrackingData {
 
         values = TrackingData.td.toPieChart();
 
-        ArrayList<Color> colors = new ArrayList<Color>();
+        ArrayList<Color> colors = new ArrayList<>();
         colors.add(Color.gray);
         colors.add(Color.green);
         colors.add(Color.blue);
@@ -196,7 +196,7 @@ public class TrackingData {
     }
 
     JProgressBar createProgressBar() {
-        JProgressBar pb = new JProgressBar();
+        JProgressBar pb;
         //System.out.println("Income: $" + incomeCat.getIncome());
         //System.out.println("Expense Percentage: " + (getTotalExpense() / (Category.incomeCat.getIncome() * 1)));
         pb = new JProgressBar(0,(int) Category.incomeCat.getIncome());
