@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.DecimalFormat;
 
 import static csu.csci325.Category.incomeCat;
 import static csu.csci325.Category.manualCat;
@@ -13,27 +14,25 @@ import static csu.csci325.CategoryList.*;
 
 public class SetupFrame extends JFrame{
     private JLabel title;
-    public JTextField monthlyIncome;
+    private JTextField monthlyIncome;
 
-    public JCheckBox rent;
-    public JCheckBox food;
-    public JCheckBox entertain;
-    public JCheckBox loans;
-    public JCheckBox savings;
-    public JCheckBox credit;
-    public JCheckBox fuel;
-    public JCheckBox manual;
-    public JTextField manualcat;
-    public JButton submit1;
+    private JCheckBox rent;
+    private JCheckBox food;
+    private JCheckBox entertain;
+    private JCheckBox loans;
+    private JCheckBox savings;
+    private JCheckBox credit;
+    private JCheckBox fuel;
+    private JCheckBox manual;
+    private JTextField manualcat;
+    private JButton submit1;
 
     private JLabel warning;
     private JLabel update;
 
     public static String manualName;
+    private DecimalFormat numberFormat = new DecimalFormat("#.00");
 
-
-    //public CategoryList catList = new CategoryList();
-    //static JPanel setupPane = new JPanel();
 
     public SetupFrame() {
         JFrame setupFrame = new JFrame("Setup Panel");
@@ -250,17 +249,14 @@ public class SetupFrame extends JFrame{
                 AddExpenseFrame.categoryArray = catList.getAsArray();
                 TrackingData.activeCategories = catList.categoryList;
 
-                update.setText("<html>" + "Your income is: $" + Category.incomeCat.getIncome() +
-                        "<br>" + "Categories added successfully!" +
+                update.setForeground(Color.BLUE);
+                update.setText("<html><br>" + "Your income is: $" + numberFormat.format(Category.incomeCat.getIncome()) +
+                        "<br><br>" + "Categories added successfully!" +
                         "<br>" + "Exit out of this window to add and" +
                         "<br>" + "track expenses.</html>");
 
                 monthlyIncome.setText("");
             }
-            //catList.ListToString();
-
-
         }
     }
-
 }

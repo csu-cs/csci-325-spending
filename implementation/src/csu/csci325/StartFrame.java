@@ -16,6 +16,10 @@ public class StartFrame extends JFrame {
 
     private JPanel blankChart = new JPanel();
 
+    public static void main(String[] args) {
+        StartFrame startFrame = new StartFrame();
+    }
+
     public StartFrame() {
         final JFrame startFrame = new JFrame ("Start Panel");
         startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,8 +56,6 @@ public class StartFrame extends JFrame {
             tracking.addActionListener(listener);
             userProfile.addActionListener(listener); //(new userProfileListener())
 
-            //asp = new aSetupPanel();
-            //aap = new aAddExpensePanel();
             blankChart = new JPanel();
 
             JPanel welcomePane = new JPanel();
