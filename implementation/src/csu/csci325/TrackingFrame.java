@@ -92,7 +92,7 @@ public class TrackingFrame extends JFrame {
             //PROGRESS BAR(Expense vs. Income)
             exVIncomeChart.setLayout(new BoxLayout(exVIncomeChart, BoxLayout.Y_AXIS));
             exVIncomeChart.add(TrackingData.td.createProgressBar());
-            exVILabel.setText("<html>" + "You are currently at "
+            exVILabel.setText("<html>" + "You have currently spent "
                     + numberFormat.format((TrackingData.td.getTotalExpense() / (Category.incomeCat.getIncome()) * 100))
                     + "%" + "<br>" +
                     "of your income of $" + numberFormat.format(Category.incomeCat.getIncome()) + ".</html>");

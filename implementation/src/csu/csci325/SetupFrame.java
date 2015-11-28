@@ -84,6 +84,7 @@ public class SetupFrame extends JFrame{
 
             warning = new JLabel();
             update = new JLabel();
+            update.setText("Your income is currently: $" + numberFormat.format(Category.incomeCat.getIncome()));
 
             //PANELS
             JPanel incomePane = new JPanel();
