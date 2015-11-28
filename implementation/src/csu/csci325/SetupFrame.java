@@ -9,6 +9,7 @@ import java.awt.event.ItemListener;
 
 import static csu.csci325.Category.incomeCat;
 import static csu.csci325.Category.manualCat;
+import static csu.csci325.CategoryList.*;
 
 public class SetupFrame extends JFrame{
     private JLabel title;
@@ -31,7 +32,7 @@ public class SetupFrame extends JFrame{
     public static String manualName;
 
 
-    public CategoryList catList = new CategoryList();
+    //public CategoryList catList = new CategoryList();
     //static JPanel setupPane = new JPanel();
 
     public SetupFrame() {
@@ -177,8 +178,11 @@ public class SetupFrame extends JFrame{
                 //SHOW ERROR MESSAGE IF TEXT BOX IS EMPTY
 
                 if (monthlyIncome.getText().isEmpty()){
+                    if (incomeCat.getIncome() > 0) {
+                    }
+                    else{
                     warning.setForeground(Color.red);
-                    warning.setText("Please enter an income!");
+                    warning.setText("Please enter an income!");}
                 }
                 else if (!monthlyIncome.getText().isEmpty()){
                     try {
@@ -238,8 +242,8 @@ public class SetupFrame extends JFrame{
                         //else catList.addString("Manual");
                     }
 
-
                     manualcat.setEditable(false);
+                    monthlyIncome.setEnabled(false);
                     manual.setEnabled(false);
                 }
 

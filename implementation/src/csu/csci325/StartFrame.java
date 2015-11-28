@@ -15,8 +15,6 @@ public class StartFrame extends JFrame {
     private JButton userProfile;
 
     private JPanel blankChart = new JPanel();
-    //public aSetupPanel asp = new aSetupPanel();
-    //public static aAddExpensePanel aap = new aAddExpensePanel();
 
     public StartFrame() {
         final JFrame startFrame = new JFrame ("Start Panel");
@@ -102,18 +100,12 @@ public class StartFrame extends JFrame {
 
             c0.gridwidth = GridBagConstraints.REMAINDER;
             c0.gridheight = 9;
-            c0.ipady = 60;
+            c0.ipady = 55;
             c0.weightx = 0.0;
             c0.weighty = 0.0;
             c0.gridx = 0;
             c0.gridy = 4;
             welcomePane.add(blankChart, c0);
-
-            //welcomePane.add(asp, c0);
-            //asp.setVisible(false);
-            //welcomePane.add(aap, c0);
-            //aap.setVisible(false);
-            //aap.categoryBox.setEnabled(false);
 
             c0.gridwidth = 1;
             c0.weightx = 1.0;
@@ -144,17 +136,21 @@ public class StartFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == setup) {
                 new SetupFrame();
-                startLabel.setText("");
-                //blankChart.setVisible(false);
-                //asp.setVisible(true);
-                //aap.setVisible(false);
+                startLabel.setForeground(Color.BLUE);
+                startLabel.setFont(new Font("Arial", Font.PLAIN, 12));
+                startLabel.setText("You can still change your income and categories from Setup!");
             }
             else if (e.getSource() == addExpense){
-                new AddExpenseFrame();
-                //blankChart.setVisible(false);
-                //asp.setVisible(false);
-                //aap.categoryBox.setEnabled(true);
-                //aap.setVisible(true);
+                if (AddExpenseFrame.categoryArray == null){
+                    startLabel.setForeground(Color.RED);
+                    startLabel.setFont(new Font("Arial", Font.CENTER_BASELINE, 12));
+                    startLabel.setText("<html>You need to set up your income and expenses in Setup" +
+                            "<br>" + "before adding any expenses!");
+                }
+                else
+                    new AddExpenseFrame();
+
+
             }
             else if (e.getSource() == tracking){
                 new TrackingFrame();

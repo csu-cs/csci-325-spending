@@ -23,7 +23,6 @@ public class AddExpenseFrame extends JFrame {
     private JTextField amount;
     private JButton submit;
 
-    //static JPanel addExpensePane = new JPanel();
     private JLabel warningLabel = new JLabel();
     private JLabel updateLabel = new JLabel();
     private JLabel infoLabel = new JLabel();

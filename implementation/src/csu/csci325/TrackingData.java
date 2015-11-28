@@ -5,7 +5,6 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static csu.csci325.Category.*;
-import static csu.csci325.ColorUtils.*;
 
 /**
  * Created by N'dia on 11/26/2015.
@@ -152,17 +151,17 @@ public class TrackingData {
                 namePercentage = ("Savings " + ((savingsCat.getExpense()/total) * 100) + "%");
             }
             if (toPieChart().get(i).equals(creditCat.getExpense() /total * 100)) {
-                namePercentage = ("Credit" + ((creditCat.getExpense()/total) * 100) + "%");
+                namePercentage = ("Credit " + ((creditCat.getExpense()/total) * 100) + "%");
             }
             if (toPieChart().get(i).equals(fuelCat.getExpense() /total * 100)) {
                 namePercentage = ("Fuel " + ((fuelCat.getExpense()/total) * 100) + "%");
             }
             if (toPieChart().get(i).equals(manualCat.getExpense() /total * 100)) {
                 if (SetupFrame.manualName.isEmpty()){
-                    namePercentage = ("Manual" + ((manualCat.getExpense()/total) * 100) + "%");
+                    namePercentage = ("Manual " + ((manualCat.getExpense()/total) * 100) + "%");
                 }
                 else
-                    namePercentage = (SetupFrame.manualName + ((manualCat.getExpense()/total) * 100) + "%");
+                    namePercentage = (SetupFrame.manualName + " " + ((manualCat.getExpense()/total) * 100) + "%");
             }
             colorName = ColorUtils.colorUtils.getColorNameFromRgb(createPieChart().colors.get(i).getRed(),
                     createPieChart().colors.get(i).getGreen(), createPieChart().colors.get(i).getBlue());
