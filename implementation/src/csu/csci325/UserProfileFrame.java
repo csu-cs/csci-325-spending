@@ -35,13 +35,13 @@ public class UserProfileFrame extends JFrame{
     //public String userAddTo = "";
 
     public UserProfileFrame() {
-        JFrame userProfileFrame = new JFrame("Add Expense Panel");
+        JFrame userProfileFrame = new JFrame("User Profile Panel");
 
         userProfileFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         userProfileFrame.setPreferredSize(new Dimension(400, 425));
         UserProfilePanel userProfilePanel = new UserProfilePanel();
-        userProfileFrame.getContentPane().add(userProfilePanel);
+        userProfileFrame.getContentPane().add(userProfilePanel).setBackground(Color.BLUE);
 
         userProfileFrame.pack();
         userProfileFrame.setVisible(true);
@@ -50,8 +50,9 @@ public class UserProfileFrame extends JFrame{
 
     public class UserProfilePanel extends JPanel {
         public UserProfilePanel() {
-            title = new JLabel("Manage Users");
+            title = new JLabel("Manage Users", SwingConstants.CENTER);
             title.setFont(new Font("Arial", Font.BOLD, 28));
+            title.setForeground(Color.BLUE);
 
             selectUserLabel = new JLabel("Select user:");
             user0 = new JRadioButton("Default User");
@@ -70,6 +71,7 @@ public class UserProfileFrame extends JFrame{
 
             newUserLabel = new JLabel("<html>Or enter the name of a new user:");
             newUser = new JTextField();
+            newUser.setMaximumSize(new Dimension(300,25));
             submit2 = new JButton("Submit");
 
             SubmitListener sl = new SubmitListener();
@@ -144,6 +146,8 @@ public class UserProfileFrame extends JFrame{
             c.gridx = 0;
             c.gridy = 3;
             userPane.add(addUserPane, c);
+
+            userPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 
             add(userPane);
         }

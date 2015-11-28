@@ -44,7 +44,7 @@ public class TrackingData {
         if (manualCat.getExpense() != 0) {
             totalExpense += manualCat.getExpense();
         }
-        System.out.println("Total Expenses: " + totalExpense);
+        //System.out.println("Total Expenses: " + totalExpense);
         return totalExpense;
     }
 
@@ -80,8 +80,8 @@ public class TrackingData {
         if (manualCat.getExpense() != 0) {
             percentages.add((manualCat.getExpense()/total) * 100);
         }
-        System.out.println("Number of percentages: " + percentages.size());
-        System.out.println(percentages.toString());
+        //System.out.println("Number of percentages: " + percentages.size());
+        //System.out.println(percentages.toString());
         return percentages;
     }
 

@@ -6,9 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class StartFrame extends JFrame {
-    public JLabel welcome;
-    public JLabel subtitle;
-    public JButton setup;
+    private JLabel welcome;
+    private JLabel subtitle;
+    private JLabel startLabel;
+    private JButton setup;
     private JButton addExpense;
     private JButton tracking;
     private JButton userProfile;
@@ -21,20 +22,26 @@ public class StartFrame extends JFrame {
         final JFrame startFrame = new JFrame ("Start Panel");
         startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        startFrame.setPreferredSize(new Dimension(400, 400));
+        startFrame.setPreferredSize(new Dimension(400, 425));
+
         StartPanel startPanel = new StartPanel();
-        startFrame.getContentPane().add(startPanel);
+        startFrame.getContentPane().add(startPanel).setBackground(Color.BLUE);
 
         startFrame.pack();
         startFrame.setVisible(true);
     }
     public class StartPanel extends JPanel {
         public StartPanel() {
-            welcome = new JLabel("SPENDING TRACKER");
+            welcome = new JLabel("SPENDING TRACKER", SwingConstants.CENTER);
             welcome.setFont(new Font("Arial", Font.BOLD, 32));
+            welcome.setForeground(Color.BLUE);
 
-            subtitle = new JLabel("Easily keep track of your expenses");
+            subtitle = new JLabel("Easily keep track of your expenses.", SwingConstants.CENTER);
             subtitle.setFont(new Font("Arial", Font.ITALIC, 18));
+
+            startLabel = new JLabel("Start by pressing the Setup button below.", SwingConstants.CENTER);
+            startLabel.setFont(new Font("Arial", Font.PLAIN, 18));
+            startLabel.setForeground(Color.RED);
 
             setup = new JButton("Setup");
             addExpense = new JButton("Add Expense");
@@ -86,12 +93,20 @@ public class StartFrame extends JFrame {
             welcomePane.add(subtitle, c0);
 
             c0.gridwidth = GridBagConstraints.REMAINDER;
-            c0.gridheight = 10;
+            c0.ipady = 45;
+            c0.weightx = 1.0;
+            c0.weighty = 1.0;
+            c0.gridx = 0;
+            c0.gridy = 3;
+            welcomePane.add(startLabel, c0);
+
+            c0.gridwidth = GridBagConstraints.REMAINDER;
+            c0.gridheight = 9;
             c0.ipady = 60;
             c0.weightx = 0.0;
             c0.weighty = 0.0;
             c0.gridx = 0;
-            c0.gridy = 3;
+            c0.gridy = 4;
             welcomePane.add(blankChart, c0);
 
             //welcomePane.add(asp, c0);
@@ -119,6 +134,8 @@ public class StartFrame extends JFrame {
             c0.gridy = 13;
             welcomePane.add(userProfile, c0);
 
+            welcomePane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+
             add(welcomePane);
         }
     }
@@ -127,6 +144,7 @@ public class StartFrame extends JFrame {
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == setup) {
                 new SetupFrame();
+                startLabel.setText("");
                 //blankChart.setVisible(false);
                 //asp.setVisible(true);
                 //aap.setVisible(false);

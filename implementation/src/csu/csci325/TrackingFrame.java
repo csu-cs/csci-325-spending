@@ -34,9 +34,9 @@ public class TrackingFrame extends JFrame {
 
         TrackingFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        TrackingFrame.setPreferredSize(new Dimension(400, 500));
+        TrackingFrame.setPreferredSize(new Dimension(450, 500));
         TrackingPanel trackingPanel = new TrackingPanel();
-        TrackingFrame.getContentPane().add(trackingPanel);
+        TrackingFrame.getContentPane().add(trackingPanel).setBackground(Color.BLUE);
 
         TrackingFrame.pack();
         TrackingFrame.setVisible(true);
@@ -44,8 +44,9 @@ public class TrackingFrame extends JFrame {
 
     public class TrackingPanel extends JPanel {
         public TrackingPanel(){
-            title = new JLabel("Tracking");
+            title = new JLabel("Tracking", SwingConstants.CENTER);
             title.setFont(new Font("Arial", Font.BOLD, 28));
+            title.setForeground(Color.BLUE);
 
             pieButton = new JButton("Pie Chart View");
             exVIncomeButton = new JButton("Expense Vs. Income View");
@@ -57,7 +58,7 @@ public class TrackingFrame extends JFrame {
             blankChart = new JPanel();
 
             blankLabel = new JLabel("Select a button above to view the chart.");
-            exVILabel = new JLabel("");
+            exVILabel = new JLabel("", SwingConstants.CENTER);
 
             pieData = new JLabel("");
             list = new JLabel("");
@@ -86,7 +87,6 @@ public class TrackingFrame extends JFrame {
 
             //LIST CHART
             list = new JLabel(TrackingData.td.toTextField());
-            //list.getLineWrap();
             list.setFont(new Font("Arial", Font.BOLD, 14));
             listChart.add(list);
 
@@ -155,6 +155,7 @@ public class TrackingFrame extends JFrame {
             trackingPane.add(listChart, c);
             listChart.setVisible(false);
 
+            trackingPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 
             add(trackingPane);
         }

@@ -37,7 +37,7 @@ public class AddExpenseFrame extends JFrame {
 
         addExpenseFrame.setPreferredSize(new Dimension(400, 425));
         AddExpensePanel addExpensePanel = new AddExpensePanel();
-        addExpenseFrame.getContentPane().add(addExpensePanel);
+        addExpenseFrame.getContentPane().add(addExpensePanel).setBackground(Color.BLUE);
 
         addExpenseFrame.pack();
         addExpenseFrame.setVisible(true);
@@ -46,19 +46,22 @@ public class AddExpenseFrame extends JFrame {
 
     public class AddExpensePanel extends JPanel {
         public AddExpensePanel() {
-            title = new JLabel("Add Expense");
+            title = new JLabel("Add Expense", SwingConstants.CENTER);
             title.setFont(new Font("Arial", Font.BOLD, 28));
+            title.setForeground(Color.BLUE);
 
             ComboListener comboBoxListener = new ComboListener();
 
-            selectCategoryLabel = new JLabel("Select category");
+            selectCategoryLabel = new JLabel("Select a category:", SwingConstants.LEFT);
             categoryBox = new JComboBox(categoryArray);
             categoryBox.addItemListener(comboBoxListener);
+            categoryBox.setMaximumSize(new Dimension(200, 25));
 
 
             amountLabel = new JLabel("<html>Enter the Amount in decimal format" +
-                    "<br>" + "without '$' or other special characters.</html>");
+                    "<br>" + "without '$' or other special characters.</html>", SwingConstants.LEFT);
             amount = new JTextField();
+            amount.setMaximumSize(new Dimension(200,25));
             submit = new JButton("Submit");
 
             SubmitListener sl = new SubmitListener();
@@ -129,6 +132,8 @@ public class AddExpenseFrame extends JFrame {
             c.gridx = 0;
             c.gridy = 3;
             addExpensePane.add(addAmountPane, c);
+
+            addExpensePane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
 
             add(addExpensePane);
         }

@@ -34,14 +34,6 @@ public class SetupFrame extends JFrame{
     public CategoryList catList = new CategoryList();
     //static JPanel setupPane = new JPanel();
 
-
-    private JButton setup;
-    private JButton addExpense;
-    private JButton tracking;
-    private JButton userProfile;
-
-
-
     public SetupFrame() {
         JFrame setupFrame = new JFrame("Setup Panel");
 
@@ -49,7 +41,7 @@ public class SetupFrame extends JFrame{
 
         setupFrame.setPreferredSize(new Dimension(400, 600));
         SetupPanel setupPanel = new SetupPanel();
-        setupFrame.getContentPane().add(setupPanel);
+        setupFrame.getContentPane().add(setupPanel).setBackground(Color.BLUE);
 
         setupFrame.pack();
         setupFrame.setVisible(true);
@@ -57,10 +49,12 @@ public class SetupFrame extends JFrame{
 
     public class SetupPanel extends JPanel {
         public SetupPanel(){
-            title = new JLabel("Setup");
+            title = new JLabel("Setup", SwingConstants.CENTER);
             title.setFont(new Font("Arial", Font.BOLD, 28));
+            title.setForeground(Color.BLUE);
 
-            monthlyIncome = new JTextField(20);
+            monthlyIncome = new JTextField();
+            monthlyIncome.setMaximumSize(new Dimension(200, 25));
 
             rent = new JCheckBox("Rent/Mortgage");
             food = new JCheckBox("Food/Grocery");
@@ -70,7 +64,9 @@ public class SetupFrame extends JFrame{
             credit = new JCheckBox("Credit Card");
             fuel = new JCheckBox("Fuel");
             manual = new JCheckBox("Manual Category");
-            manualcat = new JTextField(20);
+
+            manualcat = new JTextField();
+            manualcat.setMaximumSize(new Dimension(350, 25));
 
             submit1 = new JButton("Submit");
 
@@ -89,24 +85,12 @@ public class SetupFrame extends JFrame{
             warning = new JLabel();
             update = new JLabel();
 
-            setup = new JButton("Setup");
-            addExpense = new JButton("Add Expense");
-            tracking = new JButton("Tracking");
-            userProfile = new JButton("User Profile");
-
-            ButtonListener listener = new ButtonListener();
-            setup.addActionListener(listener);
-            addExpense.addActionListener(listener);
-            tracking.addActionListener(listener);
-            userProfile.addActionListener(listener); //(new userProfileListener())
-
-
             //PANELS
             JPanel incomePane = new JPanel();
             incomePane.setLayout(new BoxLayout(incomePane, BoxLayout.Y_AXIS));
             //incomePane.add(Box.createRigidArea(new Dimension(0, 30)));
-            JLabel monthlyLabel = new JLabel("<html>Enter your Monthly Income in decimal format" +
-                    "<br>" + "without '$' or other special characters.</html>");
+            JLabel monthlyLabel = new JLabel("<html>Enter your Monthly Income in decimal <br> format"
+                     + " without '$' or other special characters.</html>", SwingConstants.LEFT);
             incomePane.add(monthlyLabel);
             incomePane.add(monthlyIncome);
 
@@ -130,14 +114,6 @@ public class SetupFrame extends JFrame{
             selectPane.add(warning);
             selectPane.add(update);
 
-            JPanel buttonsPane = new JPanel();
-            buttonsPane.setLayout(new BoxLayout(buttonsPane, BoxLayout.LINE_AXIS));
-            buttonsPane.add(Box.createHorizontalGlue());
-            buttonsPane.add(setup);
-            buttonsPane.add(addExpense);
-            buttonsPane.add(tracking);
-            buttonsPane.add(userProfile);
-            //buttonsPane.setVisible(true);
 
             JPanel setupPane = new JPanel();
             setupPane.setLayout(new GridBagLayout());
@@ -185,16 +161,10 @@ public class SetupFrame extends JFrame{
             c.gridy = 3;
             setupPane.add(selectPane, c);
 
+            setupPane.setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
             add(setupPane);
         }
 
-    }
-    private class ButtonListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-
-        }
     }
 
     public class SetupListener implements ActionListener {
@@ -225,32 +195,52 @@ public class SetupFrame extends JFrame{
                 }
 
                 if(rent.isSelected()){
-                    catList.addString("Rent/Mortgage");
+                    if (!catList.categoryList.contains("Rent/Mortgage")){
+                        catList.addString("Rent/Mortgage");
+                    }
                 }
                 if (food.isSelected()){
-                    catList.addString("Food/Grocery");
+                    if (!catList.categoryList.contains("Food/Grocery")){
+                        catList.addString("Food/Grocery");
+                    }
                 }
                 if (entertain.isSelected()){
-                    catList.addString("Entertainment");
+                    if (!catList.categoryList.contains("Entertainment")){
+                        catList.addString("Entertainment");
+                    }
                 }
                 if (loans.isSelected()){
-                    catList.addString("Loans");
+                    if (!catList.categoryList.contains("Loans")){
+                        catList.addString("Loans");
+                    }
                 }
                 if (savings.isSelected()) {
-                    catList.addString("Savings");
+                    if (!catList.categoryList.contains("Savings")){
+                        catList.addString("Savings");
+                    }
                 }
                 if (credit.isSelected()){
-                    catList.addString("Credit");
+                    if (!catList.categoryList.contains("Credit")){
+                        catList.addString("Credit");
+                    }
                 }
                 if (fuel.isSelected()){
-                    catList.addString("Fuel");
+                    if (!catList.categoryList.contains("Fuel")){
+                        catList.addString("Fuel");
+                    }
                 }
                 if (manual.isSelected()){
-                    if (!manualcat.getText().isEmpty()){
-                        manualName = manualcat.getText();
-                        catList.addString(manualName);
+                    if (!catList.categoryList.contains("Manual") || !catList.categoryList.contains(manualName)){
+                        if (!manualcat.getText().isEmpty()){
+                            manualName = manualcat.getText();
+                            catList.addString(manualName);
+                        }
+                        //else catList.addString("Manual");
                     }
-                    else catList.addString("Manual");
+
+
+                    manualcat.setEditable(false);
+                    manual.setEnabled(false);
                 }
 
                 AddExpenseFrame.categoryArray = catList.getAsArray();
