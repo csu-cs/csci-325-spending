@@ -175,8 +175,6 @@ public class SetupFrame extends JFrame{
             double income;
 
             if (e.getSource() == submit1) {
-                //SHOW ERROR MESSAGE IF TEXT BOX IS EMPTY
-
                 if (monthlyIncome.getText().isEmpty()){
                     if (incomeCat.getIncome() > 0) {
                     }
@@ -239,7 +237,6 @@ public class SetupFrame extends JFrame{
                             manualName = manualcat.getText();
                             catList.addString(manualName);
                         }
-                        //else catList.addString("Manual");
                     }
 
                     manualcat.setEditable(false);
@@ -255,6 +252,9 @@ public class SetupFrame extends JFrame{
                         "<br><br>" + "Categories added successfully!" +
                         "<br>" + "Exit out of this window to add and" +
                         "<br>" + "track expenses.</html>");
+
+                //'Categories selected' label? String list of active categories below.
+                catList.ListToString();
 
                 monthlyIncome.setText("");
             }

@@ -59,6 +59,7 @@ public class AddExpenseFrame extends JFrame {
             categoryBox.setMaximumSize(new Dimension(175, 25));
 
 
+
             amountLabel = new JLabel("<html>Enter the Amount in decimal format" +
                     "<br>" + "without '$' or other special characters.</html>", SwingConstants.LEFT);
             amount = new JTextField();
@@ -160,9 +161,7 @@ public class AddExpenseFrame extends JFrame {
                 else if (!amount.getText().isEmpty()) {
                     try {
                         Double.parseDouble(amount.getText());
-                        //System.out.println("Parse successful.");
                     } catch (NumberFormatException nfe) {
-                        //System.out.println("Parse unsuccessful.");
                         warningLabel.setForeground(Color.red);
                         warningLabel.setText("Input a decimal number without special characters.");
                     }
