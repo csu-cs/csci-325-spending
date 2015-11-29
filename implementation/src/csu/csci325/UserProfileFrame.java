@@ -19,14 +19,16 @@ public class UserProfileFrame extends JFrame{
 
     public static String[] userArray;
 
-    private JRadioButton user0;
-    private JRadioButton user1;
-    private JRadioButton user2;
-    private JButton submit1;
+    private JRadioButton defaultUser;
+    private JRadioButton userName;
+    private JRadioButton newUserName;
 
-    private JLabel newUserLabel;
-    private JTextField newUser;
-    private JButton submit2;
+
+    private JLabel userLogin;
+    private JTextField userLoginInput;
+    private JLabel userPassword;
+    private JTextField userPasswordInput;
+    private JButton submit;
 
     private JLabel warningLabel = new JLabel();
     private JLabel updateLabel = new JLabel();
@@ -55,27 +57,34 @@ public class UserProfileFrame extends JFrame{
             title.setForeground(Color.BLUE);
 
             selectUserLabel = new JLabel("Select user:");
-            user0 = new JRadioButton("Default User");
-            user1 = new JRadioButton("-");
-            user1.setEnabled(false);
-            user2 = new JRadioButton("-");
-            user2.setEnabled(false);
-            submit1 = new JButton("Submit");
+            defaultUser = new JRadioButton("Default User");
+            newUserName = new JRadioButton("New User Name");
+            userName = new JRadioButton("User Name");
 
-            RadioListener radioListener = new RadioListener();
-            user0.addItemListener(radioListener);
-            user1.addItemListener(radioListener);
-            user2.addItemListener(radioListener);
-            submit1.addItemListener(radioListener);
+            //now the buttons only select one at a time.
+            ButtonGroup bg = new ButtonGroup();
+            bg.add(defaultUser);
+            bg.add(newUserName);
+            bg.add(userName);
+
+            defaultUser.addActionListener(new radioButtonAction());
+            userName.addActionListener(new radioButtonAction());
+            newUserName.addActionListener(new radioButtonAction());
 
 
-            newUserLabel = new JLabel("<html>Or enter the name of a new user:");
-            newUser = new JTextField();
-            newUser.setMaximumSize(new Dimension(300,25));
-            submit2 = new JButton("Submit");
+            userLogin = new JLabel("<html>User Name:");
+            userLoginInput = new JTextField();
+            userLoginInput.setMaximumSize(new Dimension(300, 25));
+
+            userPassword = new JLabel("<html>Password:");
+            userPasswordInput = new JTextField();
+            userPasswordInput.setMaximumSize(new Dimension(300, 25));
+            submit = new JButton("Submit");
 
             SubmitListener sl = new SubmitListener();
-            submit2.addActionListener(sl);
+            userName.addActionListener(sl);
+            newUserName.addActionListener(sl);
+            submit.addActionListener(sl);
 
             warningLabel = new JLabel("");
             updateLabel = new JLabel("");
@@ -86,20 +95,21 @@ public class UserProfileFrame extends JFrame{
             JPanel selectUserPane = new JPanel();
             selectUserPane.setLayout(new BoxLayout(selectUserPane, BoxLayout.Y_AXIS));
             selectUserPane.add(selectUserLabel);
-            selectUserPane.add(user0);
-            selectUserPane.add(user1);
-            selectUserPane.add(user2);
-            selectUserPane.add(submit1);
-
+            selectUserPane.add(defaultUser);
+            selectUserPane.add(newUserName);
+            selectUserPane.add(userName);
 
             JPanel addUserPane = new JPanel();
             addUserPane.setLayout(new BoxLayout(addUserPane, BoxLayout.Y_AXIS));
-            addUserPane.add(newUserLabel);
-            addUserPane.add(newUser);
-            addUserPane.add(submit2);
+            addUserPane.add(userLogin);
+            addUserPane.add(userLoginInput);
+            addUserPane.add(userPassword);
+            addUserPane.add(userPasswordInput);
+            addUserPane.add(submit);
             addUserPane.add(warningLabel);
             addUserPane.add(updateLabel);
             addUserPane.add(infoLabel);
+
 
             JPanel userPane = new JPanel();
             userPane.setLayout(new GridBagLayout());
@@ -157,15 +167,60 @@ public class UserProfileFrame extends JFrame{
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            String user, password;
+            user = userLoginInput.getText();
+            password = userPasswordInput.getText();
+            AddUsers add = new AddUsers();
 
+            if(e.getSource() == submit){
+                if(e.getSource() == newUserName) {
+                    add.put(user, password);
+                    System.out.println(add.size());
+                }else if(e.getSource() == userName){
+                    System.out.println(add.get(password));
+                }
+
+            }
         }
     }
 
-    public class RadioListener implements ItemListener{
+    public class radioButtonAction implements ActionListener{
 
         @Override
-        public void itemStateChanged(ItemEvent e) {
+        public void actionPerformed(ActionEvent e) {
+            Object s = e.getSource();
 
+            if(s == defaultUser){
+                defaultUser.setText("Click 'X' to run a manual budget!");
+                userLogin.setVisible(false);
+                userLoginInput.setVisible(false);
+                userPassword.setVisible(false);
+                userPasswordInput.setVisible(false);
+                //submit1.setVisible(false);
+                submit.setVisible(false);
+            }
+            else if(s == userName){
+                userLogin.setText("User Name:");
+                userPassword.setText("Password");
+                defaultUser.setText("Default User");
+                userLogin.setVisible(true);
+                userLoginInput.setVisible(true);
+                userPassword.setVisible(true);
+                userPasswordInput.setVisible(true);
+                //submit1.setVisible(true);
+                submit.setVisible(true);
+            }
+            else if(s == newUserName) {
+                userLogin.setText("New User Name:");
+                userPassword.setText("New Password");
+                defaultUser.setText("Default User");
+                userLogin.setVisible(true);
+                userLoginInput.setVisible(true);
+                userPassword.setVisible(true);
+                userPasswordInput.setVisible(true);
+                //submit1.setVisible(true);
+                submit.setVisible(true);
+            }
         }
     }
 }
