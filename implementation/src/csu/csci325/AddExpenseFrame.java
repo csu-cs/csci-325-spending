@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 import static csu.csci325.Category.*;
@@ -23,12 +24,12 @@ public class AddExpenseFrame extends JFrame {
     private JTextField amount;
     private JButton submit;
 
-    //static JPanel addExpensePane = new JPanel();
     private JLabel warningLabel = new JLabel();
     private JLabel updateLabel = new JLabel();
     private JLabel infoLabel = new JLabel();
 
     public String addTo = "";
+    private DecimalFormat numberFormat = new DecimalFormat("#.00");
 
     public AddExpenseFrame() {
         JFrame addExpenseFrame = new JFrame("Add Expense Panel");
@@ -52,10 +53,11 @@ public class AddExpenseFrame extends JFrame {
 
             ComboListener comboBoxListener = new ComboListener();
 
-            selectCategoryLabel = new JLabel("Select a category:", SwingConstants.LEFT);
+            selectCategoryLabel = new JLabel("Select a category:", SwingConstants.HORIZONTAL);
             categoryBox = new JComboBox(categoryArray);
             categoryBox.addItemListener(comboBoxListener);
-            categoryBox.setMaximumSize(new Dimension(200, 25));
+            categoryBox.setMaximumSize(new Dimension(175, 25));
+
 
 
             amountLabel = new JLabel("<html>Enter the Amount in decimal format" +
@@ -120,6 +122,7 @@ public class AddExpenseFrame extends JFrame {
             addExpensePane.add(title, c);
 
             c.gridwidth = GridBagConstraints.REMAINDER;
+            c.ipady = 30;
             c.weightx = 1.0;
             c.weighty = 1;
             c.gridx = 0;
@@ -158,9 +161,7 @@ public class AddExpenseFrame extends JFrame {
                 else if (!amount.getText().isEmpty()) {
                     try {
                         Double.parseDouble(amount.getText());
-                        //System.out.println("Parse successful.");
                     } catch (NumberFormatException nfe) {
-                        //System.out.println("Parse unsuccessful.");
                         warningLabel.setForeground(Color.red);
                         warningLabel.setText("Input a decimal number without special characters.");
                     }
@@ -168,92 +169,82 @@ public class AddExpenseFrame extends JFrame {
 
                 amountToAdd = Double.parseDouble(amount.getText());
 
-                //
-                // System.out.println("Category: " + addTo);
                 if (Objects.equals(addTo, "RENT")) {
                     rentMortgageCat.mExpense += amountToAdd;
-                    //System.out.println("After adding to Rent: " + rentMortgageCat.getExpense());
-                    update = ("<html>" + "Amount added to Rent: $" + amountToAdd
-                            + "<br>" + "Rent total: $" + rentMortgageCat.getExpense()
-                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    update = ("<html>" + "Amount added to Rent: $" + numberFormat.format(amountToAdd)
+                            + "<br>" + "Rent total: $" + numberFormat.format(rentMortgageCat.getExpense())
+                            + "<br>" + " Total expenses: $" + numberFormat.format(TrackingData.td.getTotalExpense()) + "</html>");
                     updateLabel.setText(update);
                     amount.setText("");
                     }
                 else if (addTo.equals("FOOD")) {
                     foodGroceryCat.mExpense += amountToAdd;
-                    //System.out.println("After adding to Food: " + foodGroceryCat.getExpense());
-                    update = ("<html>" + "Amount added to Food/Grocery: $" + amountToAdd
-                            + "<br>" + "Food/Grocery total: $" + foodGroceryCat.getExpense()
-                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    update = ("<html>" + "Amount added to Food/Grocery: $" + numberFormat.format(amountToAdd)
+                            + "<br>" + "Food/Grocery total: $" + numberFormat.format(foodGroceryCat.getExpense())
+                            + "<br>" + " Total expenses: $" + numberFormat.format(TrackingData.td.getTotalExpense()) + "</html>");
                     updateLabel.setText(update);
                     amount.setText("");
                     }
                 else if (addTo.equals("ENTERTAIN")) {
                     Category.entertainmentCat.mExpense += amountToAdd;
-                    //System.out.println("After adding to Entertainment " + entertainmentCat.getExpense());
-                    update = ("<html>" + "Amount added to Entertainment: $" + amountToAdd
-                            + "<br>" + "Entertainment total: $" + entertainmentCat.getExpense()
-                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    update = ("<html>" + "Amount added to Entertainment: $" + numberFormat.format(amountToAdd)
+                            + "<br>" + "Entertainment total: $" + numberFormat.format(entertainmentCat.getExpense())
+                            + "<br>" + " Total expenses: $" + numberFormat.format(TrackingData.td.getTotalExpense()) + "</html>");
                     updateLabel.setText(update);
                     amount.setText("");
                 }
                 else if (addTo.equals("LOANS")) {
                     Category.loansCat.mExpense += amountToAdd;
-                    //System.out.println("After adding to Loans: " + loansCat.getExpense());
-                    update = ("<html>" + "Amount added to Loans: $" + amountToAdd
-                            + "<br>" + "Loans total: $" + loansCat.getExpense()
-                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    update = ("<html>" + "Amount added to Loans: $" + numberFormat.format(amountToAdd)
+                            + "<br>" + "Loans total: $" + numberFormat.format(loansCat.getExpense())
+                            + "<br>" + " Total expenses: $" + numberFormat.format(TrackingData.td.getTotalExpense()) + "</html>");
                     updateLabel.setText(update);
                     amount.setText("");
                 }
                 else if (addTo.equals("SAVINGS")) {
                     Category.savingsCat.mExpense += amountToAdd;
-                    //System.out.println("After adding to Savings: " + savingsCat.getExpense());
-                    update = ("<html>" + "Amount added to Savings: $" + amountToAdd
-                            + "<br>" + "Savings total: $" + savingsCat.getExpense()
-                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    update = ("<html>" + "Amount added to Savings: $" + numberFormat.format(amountToAdd)
+                            + "<br>" + "Savings total: $" + numberFormat.format(savingsCat.getExpense())
+                            + "<br>" + " Total expenses: $" + numberFormat.format(TrackingData.td.getTotalExpense()) + "</html>");
                     updateLabel.setText(update);
                     amount.setText("");
                 }
                 else if (addTo.equals("CREDIT")) {
                     Category.creditCat.mExpense += amountToAdd;
-                    //System.out.println("After adding to Credit: " + creditCat.getExpense());
-                    update = ("<html>" + "Amount added to Credit: $" + amountToAdd
-                            + "<br>" + "Credit total: $" + creditCat.getExpense()
-                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    update = ("<html>" + "Amount added to Credit: $" + numberFormat.format(amountToAdd)
+                            + "<br>" + "Credit total: $" + numberFormat.format(creditCat.getExpense())
+                            + "<br>" + " Total expenses: $" + numberFormat.format(TrackingData.td.getTotalExpense()) + "</html>");
                     updateLabel.setText(update);
                     amount.setText("");
                 }
                 else if (addTo.equals("FUEL")) {
                     Category.fuelCat.mExpense += amountToAdd;
-                    //System.out.println("After adding to Fuel: " + fuelCat.getExpense());
-                    update = ("<html>" + "Amount added to Fuel: $" + amountToAdd
-                            + "<br>" + "Fuel total: $" + fuelCat.getExpense()
-                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                    update = ("<html>" + "Amount added to Fuel: $" + numberFormat.format(amountToAdd)
+                            + "<br>" + "Fuel total: $" + numberFormat.format(fuelCat.getExpense())
+                            + "<br>" + " Total expenses: $" + numberFormat.format(TrackingData.td.getTotalExpense()) + "</html>");
                     updateLabel.setText(update);
                     amount.setText("");
                 }
                 else if (addTo.equals("MANUAL")) {
                     Category.manualCat.mExpense += amountToAdd;
-                    //System.out.println("After adding to Manual: " + manualCat.getExpense());
                     update = ("<html>" + "Amount added to " + SetupFrame.manualName + ": $"
-                            + amountToAdd
+                            + numberFormat.format(amountToAdd)
                             + "<br>" + SetupFrame.manualName
-                            + " total: $" + manualCat.getExpense()
-                            + "<br>" + " Total expenses: $" + TrackingData.td.getTotalExpense() + "</html>");
+                            + " total: $" + numberFormat.format(manualCat.getExpense())
+                            + "<br>" + " Total expenses: $" + numberFormat.format(TrackingData.td.getTotalExpense()) + "</html>");
                     updateLabel.setText(update);
                     amount.setText("");
                 }
             }
 
             if (TrackingData.td.getTotalExpense() > Category.incomeCat.getIncome()){
-                warning = "Warning: you have exceeded your income of $" + Category.incomeCat.getIncome();
+                warning = "Warning: you have exceeded your income of $" + numberFormat.format(Category.incomeCat.getIncome());
                 warningLabel.setForeground(Color.red);
                 warningLabel.setText(warning);
             }
             info = ("<html>" + "Add another expense"
-            + "<br>" + "or close this window and click 'Tracking'"
-            + "<br>" + "to view the tracking charts." + "</html>");
+            + "<br>" + "or close this window and click"
+            + "<br>" + "Tracking to view the tracking charts." + "</html>");
             infoLabel.setForeground(Color.blue);
             infoLabel.setText(info);
         }
@@ -263,7 +254,6 @@ public class AddExpenseFrame extends JFrame {
         @Override
         public void itemStateChanged(ItemEvent e) {
             JComboBox cb = (JComboBox) e.getSource();
-            //System.out.println("Manual category name: " + SetupFrame.manualName);
             if (cb.getSelectedItem().equals("Rent/Mortgage")) {
                 addTo = "RENT";
             }

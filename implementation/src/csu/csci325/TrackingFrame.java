@@ -1,11 +1,10 @@
 package csu.csci325;
 
-import sun.text.resources.sr.JavaTimeSupplementary_sr_Latn;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 
 public class TrackingFrame extends JFrame {
 
@@ -26,7 +25,7 @@ public class TrackingFrame extends JFrame {
     private JLabel pieData = new JLabel();
     private JLabel list = new JLabel();
 
-    //static JPanel trackingPane = new JPanel();
+    private DecimalFormat numberFormat = new DecimalFormat("#.00");
 
 
     public TrackingFrame() {
@@ -93,10 +92,10 @@ public class TrackingFrame extends JFrame {
             //PROGRESS BAR(Expense vs. Income)
             exVIncomeChart.setLayout(new BoxLayout(exVIncomeChart, BoxLayout.Y_AXIS));
             exVIncomeChart.add(TrackingData.td.createProgressBar());
-            exVILabel.setText("<html>" + "You are currently at "
-                    + ((TrackingData.td.getTotalExpense() / (Category.incomeCat.getIncome()) * 100))
+            exVILabel.setText("<html>" + "You have currently spent "
+                    + numberFormat.format((TrackingData.td.getTotalExpense() / (Category.incomeCat.getIncome()) * 100))
                     + "%" + "<br>" +
-                    "of your income of $" + Category.incomeCat.getIncome() + ".</html>");
+                    "of your income of $" + numberFormat.format(Category.incomeCat.getIncome()) + ".</html>");
             exVIncomeChart.add(exVILabel);
 
             JPanel trackingPane = new JPanel();
