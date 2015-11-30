@@ -84,7 +84,9 @@ public class SetupFrame extends JFrame{
 
             warning = new JLabel();
             update = new JLabel();
-            update.setText("Your income is currently: $" + numberFormat.format(Category.incomeCat.getIncome()));
+            //update.setAutoscrolls(true);
+            update.setText("<html>Your income is currently: $" + numberFormat.format(Category.incomeCat.getIncome())
+                    + "<br>" + "Your active categories: " + catList.ListToString());
 
             //PANELS
             JPanel incomePane = new JPanel();
@@ -251,7 +253,7 @@ public class SetupFrame extends JFrame{
                 update.setText("<html><br>" + "Your income is: $" + numberFormat.format(Category.incomeCat.getIncome()) +
                         "<br><br>" + "Categories added successfully!" +
                         "<br>" + "Exit out of this window to add and" +
-                        "<br>" + "track expenses.</html>");
+                        "<br>" + "track expenses." +"</html>");
 
                 //'Categories selected' label? String list of active categories below.
                 catList.ListToString();
