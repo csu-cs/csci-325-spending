@@ -140,7 +140,7 @@ public class StartFrame extends JFrame {
                 new SetupFrame();
                 startLabel.setForeground(Color.BLUE);
                 startLabel.setFont(new Font("Arial", Font.PLAIN, 12));
-                startLabel.setText("You can still change your income and add categories in Setup!");
+                startLabel.setText("You can still change your income and categories in Setup!");
             }
             else if (e.getSource() == addExpense){
                 if (AddExpenseFrame.categoryArray == null){

@@ -326,7 +326,7 @@ public class SetupFrame extends JFrame{
 
                 update.setForeground(Color.BLUE);
                 update.setText("<html><br>" + "Your income is: $" + numberFormat.format(Category.incomeCat.getIncome()) +
-                        "<br><br>" + "Categories added successfully!" +
+                        "<br><br>" + "Categories added/removed successfully!" +
                         "<br>" + "Exit out of this window to add and" +
                         "<br>" + "track expenses." + "</html>");
                 listActiveCats.setText("<html>Your active categories: " + catList.ListToString());

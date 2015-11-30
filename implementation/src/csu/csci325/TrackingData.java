@@ -114,6 +114,9 @@ public class TrackingData {
                 listValues.add(SetupFrame.manualName + ": $" + numberFormat.format(manualCat.getExpense()));
             }
         }
+
+        listValues.add("-----------------------------------------");
+        listValues.add("Total expenses: $" + numberFormat.format(getTotalExpense()));
         return listValues;
     }
 

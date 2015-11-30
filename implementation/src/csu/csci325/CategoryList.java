@@ -22,7 +22,7 @@ public class CategoryList {
         return catL;
     }
 
-    public void ListToStringOutput(){
+    public void PrintListToString(){
         String catL[] = (String[]) categoryList.toArray(new String[categoryList.size()]);
         for (int i = 0; i < catL.length; i++) {
             System.out.println(catL[i]);
