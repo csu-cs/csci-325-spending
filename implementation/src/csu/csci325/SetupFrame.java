@@ -29,6 +29,7 @@ public class SetupFrame extends JFrame{
 
     private JLabel warning;
     private JLabel update;
+    private JLabel listActiveCats;
 
     public static String manualName;
     private DecimalFormat numberFormat = new DecimalFormat("#.00");
@@ -39,7 +40,7 @@ public class SetupFrame extends JFrame{
 
         setupFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        setupFrame.setPreferredSize(new Dimension(400, 600));
+        setupFrame.setPreferredSize(new Dimension(600, 700));
         SetupPanel setupPanel = new SetupPanel();
         setupFrame.getContentPane().add(setupPanel).setBackground(Color.BLUE);
 
@@ -83,10 +84,14 @@ public class SetupFrame extends JFrame{
             submit1.addActionListener(checkCategories);
 
             warning = new JLabel();
+
             update = new JLabel();
-            //update.setAutoscrolls(true);
-            update.setText("<html>Your income is currently: $" + numberFormat.format(Category.incomeCat.getIncome())
-                    + "<br>" + "Your active categories: " + catList.ListToString());
+            update.setText("<html>Your income is currently: $" + numberFormat.format(Category.incomeCat.getIncome()));
+
+            listActiveCats = new JLabel();
+            if (CategoryList.catList.categoryList.isEmpty()){}
+            else
+                listActiveCats.setText("<html>Your active categories: " + catList.ListToString());
 
             //PANELS
             JPanel incomePane = new JPanel();
@@ -116,6 +121,7 @@ public class SetupFrame extends JFrame{
             selectPane.add(submit1);
             selectPane.add(warning);
             selectPane.add(update);
+            selectPane.add(listActiveCats);
 
 
             JPanel setupPane = new JPanel();
