@@ -13,6 +13,10 @@ public class CategoryList {
         categoryList.add(cat);
     }
 
+    void removeString (String cat) {
+        categoryList.remove(cat);
+    }
+
     String[] getAsArray() {
         String catL[] = (String[]) categoryList.toArray(new String[categoryList.size()]);
         return catL;

@@ -8,8 +8,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.DecimalFormat;
 
-import static csu.csci325.Category.incomeCat;
-import static csu.csci325.Category.manualCat;
+import static csu.csci325.Category.*;
 import static csu.csci325.CategoryList.*;
 
 public class SetupFrame extends JFrame{
@@ -89,7 +88,8 @@ public class SetupFrame extends JFrame{
             update.setText("<html>Your income is currently: $" + numberFormat.format(Category.incomeCat.getIncome()));
 
             listActiveCats = new JLabel();
-            if (CategoryList.catList.categoryList.isEmpty()){}
+            if (CategoryList.catList.categoryList.isEmpty())
+                listActiveCats.setText("You currently have no active categories.");
             else
                 listActiveCats.setText("<html>Your active categories: " + catList.ListToString());
 
@@ -122,6 +122,32 @@ public class SetupFrame extends JFrame{
             selectPane.add(warning);
             selectPane.add(update);
             selectPane.add(listActiveCats);
+
+            //Keeps boxes checked if categories are active:
+            if (catList.categoryList.contains("Rent/Mortgage")){
+                rent.setSelected(true);
+            }
+            if (catList.categoryList.contains("Food/Grocery")){
+                food.setSelected(true);
+            }
+            if (catList.categoryList.contains("Entertainment")){
+                entertain.setSelected(true);
+            }
+            if (catList.categoryList.contains("Loans")){
+                loans.setSelected(true);
+            }
+            if (catList.categoryList.contains("Savings")){
+                savings.setSelected(true);
+            }
+            if (catList.categoryList.contains("Credit")){
+                credit.setSelected(true);
+            }
+            if (catList.categoryList.contains("Fuel")){
+                fuel.setSelected(true);
+            }
+            if (catList.categoryList.contains("Manual") || catList.categoryList.contains(manualName)){
+                manual.setSelected(true);
+            }
 
 
             JPanel setupPane = new JPanel();
@@ -203,42 +229,77 @@ public class SetupFrame extends JFrame{
                     income = Double.parseDouble(monthlyIncome.getText());
                     incomeCat.mIncome = income;
                 }
-
                 if(rent.isSelected()){
                     if (!catList.categoryList.contains("Rent/Mortgage")){
                         catList.addString("Rent/Mortgage");
                     }
+
                 }
+                if (!rent.isSelected() && catList.categoryList.contains("Rent/Mortgage")){
+                    CategoryList.catList.removeString("Rent/Mortgage");
+                    rentMortgageCat.mExpense = 0;
+                }
+
                 if (food.isSelected()){
                     if (!catList.categoryList.contains("Food/Grocery")){
                         catList.addString("Food/Grocery");
                     }
                 }
+                if (!food.isSelected() && catList.categoryList.contains("Food/Grocery")){
+                    CategoryList.catList.removeString("Food/Grocery");
+                    foodGroceryCat.mExpense = 0;
+                }
+
                 if (entertain.isSelected()){
                     if (!catList.categoryList.contains("Entertainment")){
                         catList.addString("Entertainment");
                     }
                 }
+                if (!entertain.isSelected() && catList.categoryList.contains("Entertainment")){
+                    CategoryList.catList.removeString("Entertainment");
+                    entertainmentCat.mExpense = 0;
+                }
+
                 if (loans.isSelected()){
                     if (!catList.categoryList.contains("Loans")){
                         catList.addString("Loans");
                     }
                 }
+                if (!loans.isSelected() && catList.categoryList.contains("Loans")){
+                    CategoryList.catList.removeString("Loans");
+                    loansCat.mExpense = 0;
+                }
+
                 if (savings.isSelected()) {
                     if (!catList.categoryList.contains("Savings")){
                         catList.addString("Savings");
                     }
                 }
+                if (!savings.isSelected() && catList.categoryList.contains("Savings")){
+                    CategoryList.catList.removeString("Savings");
+                    savingsCat.mExpense = 0;
+                }
+
                 if (credit.isSelected()){
                     if (!catList.categoryList.contains("Credit")){
                         catList.addString("Credit");
                     }
                 }
+                if (!credit.isSelected() && catList.categoryList.contains("Credit")){
+                    CategoryList.catList.removeString("Credit");
+                    creditCat.mExpense = 0;
+                }
+
                 if (fuel.isSelected()){
                     if (!catList.categoryList.contains("Fuel")){
                         catList.addString("Fuel");
                     }
                 }
+                if (!fuel.isSelected() && catList.categoryList.contains("Fuel")){
+                    CategoryList.catList.removeString("Fuel");
+                    fuelCat.mExpense = 0;
+                }
+
                 if (manual.isSelected()){
                     if (!catList.categoryList.contains("Manual") || !catList.categoryList.contains(manualName)){
                         if (!manualcat.getText().isEmpty()){
@@ -251,6 +312,14 @@ public class SetupFrame extends JFrame{
                     monthlyIncome.setEnabled(false);
                     manual.setEnabled(false);
                 }
+                if (!manual.isSelected() && catList.categoryList.contains("Manual")) {
+                    CategoryList.catList.removeString("Manual");
+                    manualCat.mExpense = 0;
+                }
+                    else if (!manual.isSelected() && catList.categoryList.contains(manualName)) {
+                    CategoryList.catList.removeString(manualName);
+                    manualCat.mExpense = 0;
+                }
 
                 AddExpenseFrame.categoryArray = catList.getAsArray();
                 TrackingData.activeCategories = catList.categoryList;
@@ -259,11 +328,8 @@ public class SetupFrame extends JFrame{
                 update.setText("<html><br>" + "Your income is: $" + numberFormat.format(Category.incomeCat.getIncome()) +
                         "<br><br>" + "Categories added successfully!" +
                         "<br>" + "Exit out of this window to add and" +
-                        "<br>" + "track expenses." +"</html>");
-
-                //'Categories selected' label? String list of active categories below.
-                catList.ListToString();
-
+                        "<br>" + "track expenses." + "</html>");
+                listActiveCats.setText("<html>Your active categories: " + catList.ListToString());
                 monthlyIncome.setText("");
             }
         }
