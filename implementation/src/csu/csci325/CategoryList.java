@@ -33,11 +33,13 @@ public class CategoryList {
         String str = "";
         String catL[] = (String[]) categoryList.toArray(new String[categoryList.size()]);
 
-        for (int i = 0; i < catL.length - 1; i++) {
-            str = str + catL[i] + ", ";
+        if (categoryList.size() > 1) {
+            for (int i = 1; i < catL.length - 1; i++) {
+                str = str + catL[i] + ", ";
+            }
+            str = str + "& " + catL[catL.length - 1] + ".";
         }
 
-        str = str + "& " + catL[catL.length - 1] + ".";
         return str;
     }
 

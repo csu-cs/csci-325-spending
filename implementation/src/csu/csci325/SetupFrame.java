@@ -82,6 +82,8 @@ public class SetupFrame extends JFrame{
             manual.addActionListener(checkCategories);
             submit1.addActionListener(checkCategories);
 
+            catList.addString(" ");
+
             warning = new JLabel();
 
             update = new JLabel();

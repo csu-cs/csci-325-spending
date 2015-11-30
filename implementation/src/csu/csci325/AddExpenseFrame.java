@@ -168,7 +168,11 @@ public class AddExpenseFrame extends JFrame {
                 }
 
                 amountToAdd = Double.parseDouble(amount.getText());
-
+                if (Objects.equals(addTo, "BLANK")){
+                    update = "Please select a category to add to.";
+                    updateLabel.setForeground(Color.RED);
+                    updateLabel.setText(update);
+                }
                 if (Objects.equals(addTo, "RENT")) {
                     rentMortgageCat.mExpense += amountToAdd;
                     update = ("<html>" + "Amount added to Rent: $" + numberFormat.format(amountToAdd)
@@ -254,7 +258,10 @@ public class AddExpenseFrame extends JFrame {
         @Override
         public void itemStateChanged(ItemEvent e) {
             JComboBox cb = (JComboBox) e.getSource();
-            if (cb.getSelectedItem().equals("Rent/Mortgage")) {
+            if (cb.getSelectedItem().equals(" ")){
+                addTo = "BLANK";
+            }
+            else if (cb.getSelectedItem().equals("Rent/Mortgage")) {
                 addTo = "RENT";
             }
             else if (cb.getSelectedItem().equals("Food/Grocery")) {
