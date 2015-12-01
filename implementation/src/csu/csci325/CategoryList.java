@@ -2,9 +2,6 @@ package csu.csci325;
 
 import java.util.ArrayList;
 
-/**
- * Created by N'dia on 11/25/2015.
- */
 public class CategoryList {
     public static CategoryList catList = new CategoryList();
     public ArrayList categoryList = new ArrayList();
@@ -24,8 +21,8 @@ public class CategoryList {
 
     public void PrintListToString(){
         String catL[] = (String[]) categoryList.toArray(new String[categoryList.size()]);
-        for (int i = 0; i < catL.length; i++) {
-            System.out.println(catL[i]);
+        for (String aCatL : catL) {
+            System.out.println(aCatL);
         }
     }
 

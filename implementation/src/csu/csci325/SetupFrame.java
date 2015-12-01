@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 
 import static csu.csci325.Category.*;
 import static csu.csci325.CategoryList.*;
+import static csu.csci325.UserInfo.*;
 
 public class SetupFrame extends JFrame{
     private JLabel title;
@@ -82,7 +83,7 @@ public class SetupFrame extends JFrame{
             manual.addActionListener(checkCategories);
             submit1.addActionListener(checkCategories);
 
-            catList.addString(" ");
+
 
             warning = new JLabel();
 
@@ -90,8 +91,9 @@ public class SetupFrame extends JFrame{
             update.setText("<html>Your income is currently: $" + numberFormat.format(Category.incomeCat.getIncome()));
 
             listActiveCats = new JLabel();
-            if (CategoryList.catList.categoryList.isEmpty())
+            if (CategoryList.catList.categoryList.isEmpty()){
                 listActiveCats.setText("You currently have no active categories.");
+                catList.addString(" ");}
             else
                 listActiveCats.setText("<html>Your active categories: " + catList.ListToString());
 
@@ -210,6 +212,7 @@ public class SetupFrame extends JFrame{
         public void actionPerformed(ActionEvent e) {
             double income;
 
+            //if user1 selected; else do something else???
             if (e.getSource() == submit1) {
                 if (monthlyIncome.getText().isEmpty()){
                     if (incomeCat.getIncome() > 0) {
@@ -333,7 +336,14 @@ public class SetupFrame extends JFrame{
                         "<br>" + "track expenses." + "</html>");
                 listActiveCats.setText("<html>Your active categories: " + catList.ListToString());
                 monthlyIncome.setText("");
+
+                //System.out.println("User 1 Income: $" + user1.getmIncome());
+                //System.out.println("User 1 Rent/Mortgage: $" + user1.getmRent());
+
             }
+
         }
+
+
     }
 }

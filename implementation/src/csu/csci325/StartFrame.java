@@ -58,6 +58,7 @@ public class StartFrame extends JFrame {
 
             blankChart = new JPanel();
 
+
             JPanel welcomePane = new JPanel();
             welcomePane.setLayout(new GridBagLayout());
             GridBagConstraints c0 = new GridBagConstraints();
@@ -146,7 +147,7 @@ public class StartFrame extends JFrame {
                 if (AddExpenseFrame.categoryArray == null){
                     startLabel.setForeground(Color.RED);
                     startLabel.setFont(new Font("Arial", Font.CENTER_BASELINE, 12));
-                    startLabel.setText("<html>You need to set up your income and expenses in Setup" +
+                    startLabel.setText("<html>You need to set up your income and categories in Setup" +
                             "<br>" + "before adding any expenses!");
                 }
                 else
@@ -161,7 +162,6 @@ public class StartFrame extends JFrame {
             else if (e.getSource() == userProfile){
                 new UserProfileFrame();
             }
-            else;
         }
     }
 

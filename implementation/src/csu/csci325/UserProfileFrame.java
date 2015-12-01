@@ -17,7 +17,8 @@ public class UserProfileFrame extends JFrame{
     private JLabel selectUserLabel;
     //private JComboBox userBox;
 
-    public static String[] userArray;
+    //public static String[] userArray;
+    public static int userID;
 
     private JRadioButton defaultUser;
     private JRadioButton userName;
@@ -198,6 +199,8 @@ public class UserProfileFrame extends JFrame{
                 userPasswordInput.setVisible(false);
                 //submit1.setVisible(false);
                 submit.setVisible(false);
+                userID = 1;
+
             }
             else if(s == userName){
                 userLogin.setText("User Name:");
@@ -209,6 +212,7 @@ public class UserProfileFrame extends JFrame{
                 userPasswordInput.setVisible(true);
                 //submit1.setVisible(true);
                 submit.setVisible(true);
+                userID = 2;
             }
             else if(s == newUserName) {
                 userLogin.setText("New User Name:");
@@ -220,6 +224,7 @@ public class UserProfileFrame extends JFrame{
                 userPasswordInput.setVisible(true);
                 //submit1.setVisible(true);
                 submit.setVisible(true);
+
             }
         }
     }

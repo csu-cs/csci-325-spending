@@ -10,6 +10,7 @@ import java.text.DecimalFormat;
 import java.util.Objects;
 
 import static csu.csci325.Category.*;
+import static csu.csci325.UserInfo.*;
 
 public class AddExpenseFrame extends JFrame {
 
@@ -251,6 +252,29 @@ public class AddExpenseFrame extends JFrame {
             + "<br>" + "Tracking to view the tracking charts." + "</html>");
             infoLabel.setForeground(Color.blue);
             infoLabel.setText(info);
+
+            if (UserProfileFrame.userID == 1) {
+                user1.setmIncome(incomeCat.getIncome());
+                user1.setmRent(rentMortgageCat.getExpense());
+                user1.setmFood(foodGroceryCat.getExpense());
+                user1.setmEntertainment(entertainmentCat.getExpense());
+                user1.setmLoans(loansCat.getExpense());
+                user1.setmSavings(savingsCat.getExpense());
+                user1.setmCredit(creditCat.getExpense());
+                user1.setmFuel(fuelCat.getExpense());
+                user1.setmManual(manualCat.getExpense());
+            }
+            if (UserProfileFrame.userID == 2) {
+                user2.setmIncome(incomeCat.getIncome());
+                user2.setmRent(rentMortgageCat.getExpense());
+                user2.setmFood(foodGroceryCat.getExpense());
+                user2.setmEntertainment(entertainmentCat.getExpense());
+                user2.setmLoans(loansCat.getExpense());
+                user2.setmSavings(savingsCat.getExpense());
+                user2.setmCredit(creditCat.getExpense());
+                user2.setmFuel(fuelCat.getExpense());
+                user2.setmManual(manualCat.getExpense());
+            }
         }
     }
 
