@@ -24,7 +24,8 @@ public class StartFrame extends JFrame {
         final JFrame startFrame = new JFrame ("Start Panel");
         startFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        startFrame.setPreferredSize(new Dimension(400, 425));
+        //startFrame.setPreferredSize(new Dimension(400, 425));
+        startFrame.setExtendedState(MAXIMIZED_BOTH);
 
         StartPanel startPanel = new StartPanel();
         startFrame.getContentPane().add(startPanel).setBackground(Color.BLUE);
