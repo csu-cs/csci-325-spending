@@ -18,10 +18,17 @@ public class Database {
             stmt = c.createStatement();
             String sql = "CREATE TABLE COMPANY " +
                     "(ID INT PRIMARY KEY          NOT NULL," +
-                    "NAME            TEXT         NOT NULL," +
-                    "AGE             INT          NOT NULL," +
-                    "ADDRESS         CHAR(50), " +
-                    "SALARY          REAL)";
+                    "USER            TEXT         NOT NULL," +
+                    "INCOME          DOUBLE          NOT NULL," +
+                    "TOTALEXPENSE    DOUBLE, " +
+                    "RENTEXPENSE     DOUBLE, " +
+                    "FOODEXPENSE     DOUBLE, " +
+                    "ENTEREXPENSE    DOUBLE, " +
+                    "LOANSEXPENSE    DOUBLE, " +
+                    "SAVINGSEXPENSE  DOUBLE, " +
+                    "CREDITEXPENSE   DOUBLE, " +
+                    "FUELEXPENSE     DOUBLE, " +
+                    "MANUALEXPENSE   DOUBLE)";
             stmt.executeUpdate(sql);
             stmt.close();
             c.close();
