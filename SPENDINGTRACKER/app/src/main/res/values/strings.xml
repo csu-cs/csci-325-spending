@@ -49,7 +49,19 @@
 
     //ADD EXPENSE SCREEN
     <string name="AETitle">Add Expense</string>
-    <string name="AESelectCat">Select a category</string>
+    <string name="AESelectCat">Select a category: </string>
+
+    <string-array name="cats_array">
+        <item>Rent/Mortgage</item>
+        <item>Food/Grocery</item>
+        <item>Entertainment</item>
+        <item>Loans</item>
+        <item>Savings</item>
+        <item>Credit</item>
+        <item>Fuel</item>
+        <item>Manual</item>
+    </string-array>
+
     <string name="AEAmountL">Enter the amount in decimal format without
         \'$\' or other special characters.</string>
     <string name="AESubmit">Submit</string>
