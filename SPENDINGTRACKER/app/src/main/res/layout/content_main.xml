@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/MainTheme"
-        android:id="@+id/textView2"
+        android:id="@+id/Greeting"
         android:layout_marginTop="103dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -28,11 +28,16 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/MainInstruction"
-        android:id="@+id/textView3"
+        android:id="@+id/Instructions"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:textColor="#f20d0d" />
 
+<<<<<<< HEAD
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+=======
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,15 +46,48 @@
         android:layout_marginBottom="70dp"
         android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/textView3" />
+>>>>>>> f13af532954ee092a95cec66a83ef2a77eb62fee
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/AddExpenseButton"
-        android:id="@+id/button2"
-        android:layout_alignTop="@+id/button3"
-        android:layout_centerHorizontal="true" />
+        <Button
+            android:layout_width="109dp"
+            android:layout_height="85dp"
+            android:text="@string/SetUpButton"
+            android:id="@+id/SetupButton"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="70dp"
+            android:layout_row="35"
+            android:layout_column="1"
+            android:gravity="fill_vertical"
+            android:layout_columnSpan="2"
+            android:textAlignment="center" />
 
+<<<<<<< HEAD
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="85dp"
+            android:text="@string/AddExpenseButton"
+            android:id="@+id/AddEx"
+            android:layout_alignTop="@+id/Tracking"
+            android:layout_centerHorizontal="true"
+            android:layout_row="35"
+            android:layout_column="3"
+            android:gravity="fill_vertical"
+            android:textAlignment="center" />
+
+        <Button
+            android:layout_width="110dp"
+            android:layout_height="85dp"
+            android:text="@string/TrackingButton"
+            android:id="@+id/Tracking"
+            android:layout_alignTop="@+id/SetupButton"
+            android:layout_alignParentEnd="true"
+            android:layout_row="35"
+            android:layout_column="4"
+            android:gravity="fill_vertical"
+            android:textAlignment="center" />
+    </GridLayout>
+=======
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,5 +95,6 @@
         android:id="@+id/button3"
         android:layout_alignTop="@+id/button"
         android:layout_alignEnd="@+id/textView3" />
+>>>>>>> f13af532954ee092a95cec66a83ef2a77eb62fee
 
 </RelativeLayout>
