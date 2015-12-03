@@ -2,9 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
-<<<<<<< HEAD
+
     <mapping directory="C:\Users\N'dia\csci-325-spending\SPENDINGTRACKER\csci-325-spending" vcs="Git" />
-=======
->>>>>>> 867758582ee889da41473c08a20976437648017c
+
   </component>
 </project>
