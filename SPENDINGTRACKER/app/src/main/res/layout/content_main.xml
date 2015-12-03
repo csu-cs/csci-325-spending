@@ -33,9 +33,20 @@
         android:layout_centerHorizontal="true"
         android:textColor="#f20d0d" />
 
+<<<<<<< HEAD
     <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+=======
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/SetUpButton"
+        android:id="@+id/button"
+        android:layout_marginBottom="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView3" />
+>>>>>>> f13af532954ee092a95cec66a83ef2a77eb62fee
 
         <Button
             android:layout_width="109dp"
@@ -51,6 +62,7 @@
             android:layout_columnSpan="2"
             android:textAlignment="center" />
 
+<<<<<<< HEAD
         <Button
             android:layout_width="wrap_content"
             android:layout_height="85dp"
@@ -75,5 +87,14 @@
             android:gravity="fill_vertical"
             android:textAlignment="center" />
     </GridLayout>
+=======
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/TrackingButton"
+        android:id="@+id/button3"
+        android:layout_alignTop="@+id/button"
+        android:layout_alignEnd="@+id/textView3" />
+>>>>>>> f13af532954ee092a95cec66a83ef2a77eb62fee
 
 </RelativeLayout>
