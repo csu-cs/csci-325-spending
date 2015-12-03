@@ -75,4 +75,48 @@
     <string name="AEInfo">Add another expense or press back and press
         Tracking to view the tracking charts.</string>
 
+    <string name="AEUATB">BLANK</string>
+    <string name="AEUATRent">RENT</string>
+    <string name="AEUATFood">FOOD</string>
+    <string name="AEUATEntertain">ENTERTAIN</string>
+    <string name="AEUATLoans">LOANS</string>
+    <string name="AEUATSavings">SAVINGS</string>
+    <string name="AEUATCredit">CREDIT</string>
+    <string name="AEUATFuel">FUEL</string>
+    <string name="AEUATManual">MANUAL</string>
+
+    //TRACKING SCREEN
+    <string name="TRTitle">Tracking</string>
+    <string name="TRPieButton">Pie Chart View</string>
+    <string name="TRExVIButton">Expense Vs. Income View</string>
+    <string name="TRListButton">List View</string>
+
+    <string name="TRBlank">Press a button above to view its chart.</string>
+
+    <string name="TRExVI"> </string>
+    <string name="TRExVI1">You have currently spent ''% of your income of $</string>
+
+    <string name="TRPieData"> </string>
+    <string name="TDPCRent">Rent/Mortgage = </string>
+    <string name="TDPCFood">Food/Grocery = </string>
+    <string name="TDPCEnt">Entertainment = </string>
+    <string name="TDPCLoans">Loans = </string>
+    <string name="TDPCSavings">Savings = </string>
+    <string name="TDPCCredit">Credit Card = </string>
+    <string name="TDPCFuel">Fuel = </string>
+    <string name="TDPCManual">Manual Category = </string>
+
+
+    <string name="TRList"> </string>
+    <string name="TDLRent">Rent/Mortgage $</string>
+    <string name="TDLFood">Food/Grocery $</string>
+    <string name="TDLEnt">Entertainment $</string>
+    <string name="TDLLoans">Loans $</string>
+    <string name="TDLSavings">Savings $</string>
+    <string name="TDLCredit">Credit Card $</string>
+    <string name="TDLFuel">Fuel $</string>
+    <string name="TDLManual">Manual Category $</string>
+    <string name="TDLLine">-------------------------------------------</string>
+    <string name="TDLExpenses">Total expenses: $</string>
+
 </resources>
