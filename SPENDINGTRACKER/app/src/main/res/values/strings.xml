@@ -7,4 +7,72 @@
     <string name="AddExpenseButton">Add Expense</string>
     <string name="TrackingButton">Tracking</string>
     <string name="UserProfileButton">User Profile</string>
+
+    //START SCREEN
+
+    <string name="MainInstruction1">You can still change your income
+        and categories in Setup!</string>
+    <string name="MainInstruction2">You need to set up your income
+        and categories in Setup before adding any expenses!</string>
+
+    //SETUP SCREEN
+    <string name="SUTitle">Setup</string>
+
+    <string name="SUCheckRent">Rent/Mortgage</string>
+    <string name="SUCheckFood">Food/Grocery</string>
+    <string name="SUCheckEnt">Entertainment</string>
+    <string name="SUCheckLoans">Loans</string>
+    <string name="SUCheckSavings">Savings</string>
+    <string name="SUCheckCredit">Credit Card</string>
+    <string name="SUCheckFuel">Fuel</string>
+    <string name="SUCheckManual">Manual Category</string>
+
+    <string name="SUCategory">Select the categories you want to track: </string>
+
+    <string name="SUSubmit">Submit</string>
+
+    <string name="SUUpdate">Your income is currently: $</string>
+    <string name="SUUExtraUpdate">Categories added/removed successfully! Press
+        back to add and track expenses.</string>
+
+    <string name="SUWarning">Please enter an income!</string>
+    <string name="SUWarning1">Please enter a decimal number without special
+        characters.</string>
+
+    <string name="ActiveCategoriesList">You currently have no active
+        categories.</string>
+    <string name="ActiveCategoriesList1">Your active categories: </string>
+
+    <string name="SUMonthly">Enter your Monthly Income in decimal format"
+                     without '$' or other special characters.</string>
+    <string name="SUMonthlyBlank"> </string>
+
+    //ADD EXPENSE SCREEN
+    <string name="AETitle">Add Expense</string>
+    <string name="AESelectCat">Select a category</string>
+    <string name="AEAmountL">Enter the amount in decimal format without
+        '$' or other special characters.</string>
+    <string name="AESubmit">Submit</string>
+
+    <string name="AEWarning"> </string>
+    <string name="AEWarning1">Please enter an amount!</string>
+    <string name="AEWarning2">Enter a decimal number without special
+        characters.</string>
+    <string name="AEWarning3">You have exceeded your income of $</string>
+
+    <string name="AEUpdate"> </string>
+    <string name="AEUpdate1">Please select a category to add to.</string>
+    <string name="AEUpdateRent">Amount added to Rent/Mortgage: $</string>
+    <string name="AEUpdateFood">Amount added to Food/Grocery: $</string>
+    <string name="AEUpdateEnt">Amount added to Entertainment: $</string>
+    <string name="AEUpdateLoans">Amount added to Loans: $</string>
+    <string name="AEUpdateSavings">Amount added to Savings: $</string>
+    <string name="AEUpdateCredit">Amount added to Credit: $</string>
+    <string name="AEUpdateFuel">Amount added to Fuel: $</string>
+    <string name="AEUpdateManual">Amount added to  $</string>
+
+
+    <string name="AEInfo">Add another expense or press back and press
+        Tracking to view the tracking charts.</string>
+
 </resources>
