@@ -43,15 +43,15 @@
         categories.</string>
     <string name="ActiveCategoriesList1">Your active categories: </string>
 
-    <string name="SUMonthly">Enter your Monthly Income in decimal format"
-                     without '$' or other special characters.</string>
+    <string name="SUMonthly">Enter your Monthly Income in decimal format
+                     without \'$\' or other special characters.</string>
     <string name="SUMonthlyBlank"> </string>
 
     //ADD EXPENSE SCREEN
     <string name="AETitle">Add Expense</string>
     <string name="AESelectCat">Select a category</string>
     <string name="AEAmountL">Enter the amount in decimal format without
-        '$' or other special characters.</string>
+        \'$\' or other special characters.</string>
     <string name="AESubmit">Submit</string>
 
     <string name="AEWarning"> </string>
@@ -94,7 +94,7 @@
     <string name="TRBlank">Press a button above to view its chart.</string>
 
     <string name="TRExVI"> </string>
-    <string name="TRExVI1">You have currently spent ''% of your income of $</string>
+    <string name="TRExVI1">You have currently spent \'\'% of your income of $</string>
 
     <string name="TRPieData"> </string>
     <string name="TDPCRent">Rent/Mortgage = </string>
@@ -118,5 +118,8 @@
     <string name="TDLManual">Manual Category $</string>
     <string name="TDLLine">-------------------------------------------</string>
     <string name="TDLExpenses">Total expenses: $</string>
+    <string name="title_activity_add_expense">AddExpenseActivity</string>
+    <string name="title_activity_tracking">TrackingActivity</string>
+    <string name="title_activity_setup">SetupActivity</string>
 
 </resources>

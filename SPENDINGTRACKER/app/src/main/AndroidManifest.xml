@@ -18,7 +18,33 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SetupActivity"></activity>
+        <activity
+            android:name=".SetupActivity"
+            android:label="@string/title_activity_setup"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="csci325.csu.spendingtracker.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AddExpenseActivity"
+            android:label="@string/title_activity_add_expense"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="csci325.csu.spendingtracker.MainActivity" />
+        </activity>
+        <activity
+            android:name=".TrackingActivity"
+            android:label="@string/title_activity_tracking"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="csci325.csu.spendingtracker.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

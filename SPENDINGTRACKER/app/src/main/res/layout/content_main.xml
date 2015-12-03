@@ -10,7 +10,8 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="csci325.csu.spendingtracker.MainActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_main"
+    android:background="#cad5e6">
 
     <TextView
         android:layout_width="wrap_content"
@@ -33,68 +34,42 @@
         android:layout_centerHorizontal="true"
         android:textColor="#f20d0d" />
 
-<<<<<<< HEAD
     <GridLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-=======
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/SetUpButton"
-        android:id="@+id/button"
-        android:layout_marginBottom="70dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/textView3" />
->>>>>>> f13af532954ee092a95cec66a83ef2a77eb62fee
-
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/Instructions">
         <Button
             android:layout_width="109dp"
             android:layout_height="85dp"
             android:text="@string/SetUpButton"
             android:id="@+id/SetupButton"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
             android:layout_marginBottom="70dp"
             android:layout_row="35"
-            android:layout_column="1"
+            android:layout_column="0"
             android:gravity="fill_vertical"
-            android:layout_columnSpan="2"
-            android:textAlignment="center" />
-
-<<<<<<< HEAD
+            android:textAlignment="center"
+            android:onClick="openSetup" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="85dp"
             android:text="@string/AddExpenseButton"
             android:id="@+id/AddEx"
-            android:layout_alignTop="@+id/Tracking"
-            android:layout_centerHorizontal="true"
             android:layout_row="35"
             android:layout_column="3"
             android:gravity="fill_vertical"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:onClick="openAddExpense" />
 
         <Button
             android:layout_width="110dp"
             android:layout_height="85dp"
             android:text="@string/TrackingButton"
             android:id="@+id/Tracking"
-            android:layout_alignTop="@+id/SetupButton"
-            android:layout_alignParentEnd="true"
             android:layout_row="35"
             android:layout_column="4"
             android:gravity="fill_vertical"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:onClick="openTracking" />
     </GridLayout>
-=======
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/TrackingButton"
-        android:id="@+id/button3"
-        android:layout_alignTop="@+id/button"
-        android:layout_alignEnd="@+id/textView3" />
->>>>>>> f13af532954ee092a95cec66a83ef2a77eb62fee
-
 </RelativeLayout>

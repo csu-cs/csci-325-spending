@@ -1,5 +1,6 @@
 package csci325.csu.spendingtracker;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,13 +22,26 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button setupButton = (Button)findViewById(R.id.button);
-        Button addExpenseButton = (Button)findViewById(R.id.button2);
-        Button trackingButton = (Button)findViewById(R.id.button3);
+        Button setupButton = (Button)findViewById(R.id.SetupButton);
+        Button addExpenseButton = (Button)findViewById(R.id.AddEx);
+        Button trackingButton = (Button)findViewById(R.id.Tracking);
 
     }
 
+    public void openSetup(View view){
+        Intent intent = new Intent(this, SetupActivity.class);
+        startActivity(intent);
+    }
 
+    public void openAddExpense(View view){
+        Intent intent = new Intent(this, AddExpenseActivity.class);
+        startActivity(intent);
+    }
+
+    public void openTracking(View view){
+        Intent intent = new Intent(this, TrackingActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
