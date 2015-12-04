@@ -220,7 +220,9 @@ public class SetupFrame extends JFrame{
                     }
                     else{
                     warning.setForeground(Color.red);
-                    warning.setText("Please enter an income!");}
+                    warning.setText("Please enter an income!");
+                    update.setText("");
+                    }
                 }
                 else if (!monthlyIncome.getText().isEmpty()){
                     try {
@@ -231,6 +233,7 @@ public class SetupFrame extends JFrame{
                         //System.out.println("Parse unsuccessful.");
                         warning.setForeground(Color.red);
                         warning.setText("Input a decimal number without special characters.");
+                        update.setText("");
                     }
                     income = Double.parseDouble(monthlyIncome.getText());
                     incomeCat.mIncome = income;
