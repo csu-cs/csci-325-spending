@@ -151,6 +151,7 @@ public class SetupFrame extends JFrame{
             }
             if (catList.categoryList.contains("Manual") || catList.categoryList.contains(manualName)){
                 manual.setSelected(true);
+                manualcat.setEnabled(false);
             }
 
 
