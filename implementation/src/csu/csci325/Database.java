@@ -16,7 +16,7 @@ public class Database {
             System.out.println("Opened database successfully");
 
             stmt = c.createStatement();
-            String sql = "CREATE TABLE COMPANY " +
+            String sql = "CREATE TABLE USERINFO " +
                     "(ID INT PRIMARY KEY          NOT NULL," +
                     "USER            TEXT         NOT NULL," +
                     "INCOME          DOUBLE          NOT NULL," +

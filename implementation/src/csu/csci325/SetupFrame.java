@@ -329,6 +329,7 @@ public class SetupFrame extends JFrame{
                 AddExpenseFrame.categoryArray = catList.getAsArray();
                 TrackingData.activeCategories = catList.categoryList;
 
+                warning.setText("");
                 update.setForeground(Color.BLUE);
                 update.setText("<html><br>" + "Your income is: $" + numberFormat.format(Category.incomeCat.getIncome()) +
                         "<br><br>" + "Categories added/removed successfully!" +
